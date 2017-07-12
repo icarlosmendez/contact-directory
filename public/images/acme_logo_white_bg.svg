@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="288px" height="144px" viewBox="0 0 288 144" enable-background="new 0 0 288 144" xml:space="preserve">
+<g id="Darker_Version">
+	<rect display="none" fill="#6A8FC4" width="288" height="144"/>
+	<polygon fill="#808080" stroke="#FFFFFF" stroke-miterlimit="10" points="25.265,72.213 144,13.287 262.735,71.787 144,130.713 	
+		"/>
+	<polygon fill="#666666" points="205.368,100.078 144.077,69.748 82.494,100.078 144.077,130.408 	"/>
+	<polygon fill="#999999" points="144,70 144,13.144 262.235,71.787 204.81,100.287 	"/>
+	<polygon fill="none" stroke="#F2F2F2" stroke-miterlimit="10" points="25.265,72.213 144,13.287 262.735,71.787 144,130.713 	"/>
+	<g id="ACME_1_">
+		
+			<text id="Outer_dark_stroke" transform="matrix(1 0 0 1 37.1211 92.5039)" fill="none" stroke="#3D5372" stroke-width="6" stroke-miterlimit="10" font-family="'Audiowide-Regular'" font-size="64.7884">ACME</text>
+		
+			<text id="Inner_light_stroke" transform="matrix(1 0 0 1 37.1211 92.5039)" fill="none" stroke="#84B4FF" stroke-width="4" stroke-miterlimit="10" font-family="'Audiowide-Regular'" font-size="64.7884">ACME</text>
+		
+			<text id="Audiowide_1_" transform="matrix(1 0 0 1 37.1211 92.5039)" fill="#333333" font-family="'Audiowide-Regular'" font-size="64.7884">ACME</text>
+	</g>
+</g>
+</svg>

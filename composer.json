@@ -1,0 +1,14 @@
+{
+    "name": "cgm/acme_directory",
+    "description": "Simple contact database for small companies or individuals.",
+    "type": "project",
+    "require": {
+        "vlucas/phpdotenv": "^2.2"
+    },
+    "authors": [
+        {
+            "name": "Carlos Mendez",
+            "email": "calicci.gardachi@gmail.com"
+        }
+    ]
+}
