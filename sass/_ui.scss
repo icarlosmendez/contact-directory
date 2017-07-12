@@ -1,0 +1,40 @@
+
+/* ***************************************************** */
+	/* User Interface Component Styles*/
+
+button {
+
+}
+
+// sorting icons on the directory page
+img {
+	&.asc, &.dsc {
+		width: 25px;
+		height: 25px;
+	}
+}
+table.complete{
+	visibility: hidden;
+	@media #{$medium-and-up} {
+        visibility: hidden;
+	}
+	@media #{$large-and-up} {
+		visibility: visible;
+	}
+}
+table.clean{
+	visibility: hidden;
+	@media #{$medium-and-up} {
+        visibility: hidden;
+	}
+	@media #{$large-and-up} {
+		visibility: visible;
+	}
+}
+
+th.headervis {
+	visibility: hidden;
+	@media #{$large-and-up} {
+        visibility: visible;
+    }
+}

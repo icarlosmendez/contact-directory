@@ -10,7 +10,6 @@ employees.sql
 #####################
 # Sass specific rules
 
-/sass
 .sass-cache/
 *.css.map
 

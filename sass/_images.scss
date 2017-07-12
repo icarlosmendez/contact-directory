@@ -1,0 +1,15 @@
+
+/* ***************************************************** */
+	/* Image Styles*/
+
+img {
+	// max-width: 200px;
+}
+.splash {
+    z-index: -1;
+    background-image: url("../../public/images/office-worker-70s.jpg") ;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}

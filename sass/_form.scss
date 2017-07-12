@@ -1,0 +1,69 @@
+
+/* ***************************************************** */
+/* Form Styles */
+
+form button {
+    margin: 2rem auto;
+}
+input {
+    &[type=tel],
+    &[type=text],
+    &[type=email],
+    &[type=password] {
+        &:focus:not([readonly]) {
+            border-bottom: 1px solid #1565c0;
+        }
+    }
+    &[type=url],
+    &[type=time],
+    &[type=date],
+    &[type=datetime-local],
+    &[type=number],
+    &[type=search],
+    &[type=submit],
+    &textarea.materialize-textarea {
+
+    }
+}
+textarea {
+    resize: vertical;
+}
+
+
+/* ***************************************************** */
+/* Media Queries */
+
+
+
+form{
+    width: 100%;
+    margin: 0 auto;
+    height: 100px;
+    button {
+        width: 100%;
+        height: 4rem;
+        line-height: 3rem;
+    }
+    @media #{$small-and-up} {
+        // width: 90%;
+        height: 50px;
+        button {
+            width: 65%;
+        }
+    }
+    @media #{$medium-and-up} {
+        width: 80%;
+        height: 50px;
+        button {
+            width: 50%;
+        }
+    }
+    @media #{$large-and-up} {
+        width: 75%;
+        margin: 0 auto;
+        height: 50px;
+    }
+
+}
+
+
