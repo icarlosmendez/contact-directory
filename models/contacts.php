@@ -1,7 +1,7 @@
 <?php
 
     // database access environmental variables
-    // these variables are used throught the Employees class
+    // these variables are used throught the Contacts class
     $psalt  = getenv('DB_PSALT'); 
     $host   = getenv('DB_HOST');
     $name   = getenv('DB_NAME');
@@ -12,16 +12,16 @@
 
     // var_dump($name);
 
-// Create "Employees" Class (aka object)
+// Create "Contacts" Class (aka object)
 
-class Employees{ 
+class Contacts{ 
 
-    // *********** ADD a new employee *********************
-    // called when ($_GET["action"]=="addEmployeeAction") -- (#1)
-    // pass in empFName, empLName, empPhone, empEmail, username, password
+    // *********** ADD a new contact *********************
+    // called when ($_GET["action"]=="addContactAction") -- (#1)
+    // pass in contFName, contLName, contPhone, contEmail, contTitle, contCo, contDept, username and password
     // salt & hash password
-    // nothing is returned; database is updated with new employee
-    public function addEmployee($empFName, $empLName, $empPhone, $empEmail, $uname, $password){
+    // nothing is returned; database is updated with new contact
+    public function addContact($contFName, $contLName, $contPhone, $contEmail, $contTitle, $contCo, $contDept, $uname, $password){
 
         // call global variables for use in this method
         global $host, $name, $port, $char, $uname, $pword, $psalt;
@@ -37,21 +37,55 @@ class Employees{
         $dbh    = new PDO($dsn, $user, $pass);
 
         // insert the values into the database
-        $st = $dbh->prepare("insert into employees (empFName, empLName, empPhone, empEmail, username, password) values (:efn, :eln, :ep, :ee, :un, :pass)");
-        $st->execute(array(":efn"=>$empFName,":eln"=>$empLName,":ep"=>$empPhone, ":ee"=>$empEmail, ":un"=>$uname, ":pass"=>$password));
+        $st = $dbh->prepare(
+                    "insert into 
+                        contacts (
+                            contFName, 
+                            contLName, 
+                            contPhone, 
+                            contEmail, 
+                            contTitle, 
+                            contCo, 
+                            contDept, 
+                            username, 
+                            password
+                        ) values (
+                            :efn, 
+                            :eln, 
+                            :ep, 
+                            :ee, 
+                            :ti, 
+                            :co, 
+                            :de, 
+                            :un, 
+                            :pass
+                        )"
+                    );
+        $st->execute(array(
+                    ":efn"=>$contFName,
+                    ":eln"=>$contLName,
+                    ":ep"=>$contPhone,
+                    ":ee"=>$contEmail,
+                    ":ti"=>$contTitle,
+                    ":co"=>$contCo,
+                    ":de"=>$contDept,
+                    ":un"=>$uname,
+                    ":pass"=>$password
+                    )
+                );
 
         // pull last value created from database & save as a session var
-        $st = $dbh->prepare("SELECT max(empId) FROM employees;");
+        $st = $dbh->prepare("SELECT max(contId) FROM contacts;");
         $st->execute();
-        $_SESSION["empId"] = $st->fetchColumn();
+        $_SESSION["contId"] = $st->fetchColumn();
     }
 
-    // *********** GET (SINGLE) employee *********************
-    // called when employee successfully creates account (success page)
+    // *********** GET (SINGLE) contact *********************
+    // called when contact successfully creates account (success page)
     // or when they succesfully log in when
-    // pass in employeeid
-    // $result is an array from the database with employeeid matching the one passed into it
-    public function getEmployee($eid){
+    // pass in contactId
+    // $result is an array from the database with contactId matching the one passed into it
+    public function getContact($eid){
 
         // call global variables for use in this method
         global $host, $name, $port, $char, $uname, $pword;
@@ -62,9 +96,9 @@ class Employees{
         $pass   = "$pword";
         $dbh    = new PDO($dsn, $user, $pass);
 
-        // grab all users which matching userid's (should be one!)
+        // grab all users with matching userid's (should be one!)
         // return result
-        $st = $dbh->prepare("select empFName, empLName, empPhone, empEmail, username from employees where empId = :id");
+        $st = $dbh->prepare("select contFName, contLName, contPhone, contEmail, contTitle, contCo, contDept, username from contacts where contId = :id");
         $st->execute(array(":id"=>$eid));
         $result = $st->fetchAll();
         return $result;
@@ -75,7 +109,7 @@ class Employees{
     // username & password posted will be compared to the database
     // if username & password match, TRUE will be returned
     // else, FALSE will be returned
-    public function verifyEmployee($usernameInput, $passwordInput){
+    public function verifyContact($usernameInput, $passwordInput){
 
         // call global variables for use in this method
         global $host, $name, $port, $char, $uname, $pword, $psalt;
@@ -91,15 +125,15 @@ class Employees{
         $dbh    = new PDO($dsn, $user, $pass);
 
         // find all instances where username & password match the usernameInput and passwordInput
-        $sth = $dbh->prepare('select empId from employees where username = :username and password = :password');
+        $sth = $dbh->prepare('select contId from contacts where username = :username and password = :password');
         $sth->bindParam(':username', $usernameInput);
         $sth->bindParam(':password', $passwordInput);
         $sth->execute();
         $result = $sth->fetchAll();
 
-        // If the result of the 1st array item contains an 'employee id', let the user know they have successfully logged in
-        if (isset($result[0]["empId"])) {
-            $_SESSION["empId"] = $result[0]["empId"];
+        // If the result of the 1st array item contains an 'contact id', let the user know they have successfully logged in
+        if (isset($result[0]["contId"])) {
+            $_SESSION["contId"] = $result[0]["contId"];
             return TRUE;
         }
 
@@ -109,11 +143,11 @@ class Employees{
 
     }
 
-	// *********** GET (ALL) EMPLOYEES *********************
+	// *********** GET (ALL) CONTACTS *********************
     // nothing is passed in
     // called when ($_GET["action"]=="directory") -- (#7)
-    // $result is an array from the database of all employees
-    public function getEmployees(){
+    // $result is an array from the database of all contacts
+    public function getContacts(){
        
         // call global variables for use in this method
         global $host, $name, $port, $char, $uname, $pword;
@@ -124,19 +158,19 @@ class Employees{
         $pass   = "$pword";
         $dbh    = new PDO($dsn, $user, $pass);
 
-        // grab all the employees from the database
-        $st = $dbh->prepare("select empFName, empLName, empPhone, empEmail from employees");
+        // grab all the contacts from the database
+        $st = $dbh->prepare("select contFName, contLName, contPhone, contEmail from contacts");
         $st->execute();
         $result = $st->fetchAll();
         return $result;
     }
 
-    // *********** GET (ALL) EMPLOYEES *********************
+    // *********** GET (ALL) CONTACTS *********************
     // *********** SORT BY FIRST NAME ASC *****************
     // nothing is passed in
     // called when ($_GET["action"]=="sortfnameasc") -- (#11)
-    // $result is an array from the database of all employees
-    public function getEmployeesfnameasc(){
+    // $result is an array from the database of all contacts
+    public function getContactsfnameasc(){
         
         // call global variables for use in this method
         global $host, $name, $port, $char, $uname, $pword;
@@ -147,19 +181,19 @@ class Employees{
         $pass   = "$pword";
         $dbh    = new PDO($dsn, $user, $pass);
 
-        // grab all the employees from the database
-        $st = $dbh->prepare("select empFName, empLName, empPhone, empEmail from employees ORDER BY empFName ASC");
+        // grab all the contacts from the database
+        $st = $dbh->prepare("select contFName, contLName, contPhone, contEmail from contacts ORDER BY contFName ASC");
         $st->execute();
         $result = $st->fetchAll();
         return $result;
     }
 
-    // *********** GET (ALL) EMPLOYEES *********************
+    // *********** GET (ALL) CONTACTS *********************
     // *********** SORT BY FIRST NAME DESC *****************
     // nothing is passed in
     // called when $_GET["action"]=="sortfnamedesc" -- (#12)
-    // $result is an array from the database of all employees
-    public function getEmployeesfnamedesc(){
+    // $result is an array from the database of all contacts
+    public function getContactsfnamedesc(){
         
         // call global variables for use in this method
         global $host, $name, $port, $char, $uname, $pword;
@@ -170,19 +204,19 @@ class Employees{
         $pass   = "$pword";
         $dbh    = new PDO($dsn, $user, $pass);
 
-        // grab all the employees from the database
-        $st = $dbh->prepare("select empFName, empLName, empPhone, empEmail from employees ORDER BY empFName DESC");
+        // grab all the contacts from the database
+        $st = $dbh->prepare("select contFName, contLName, contPhone, contEmail from contacts ORDER BY contFName DESC");
         $st->execute();
         $result = $st->fetchAll();
         return $result;
     }
 
-    // *********** GET (ALL) EMPLOYEES *********************
+    // *********** GET (ALL) CONTACTS *********************
     // *********** SORT BY LAST NAME ASC *****************
     // nothing is passed in
     // called when ($_GET["action"]=="sortlnameasc") -- (#13)
-    // $result is an array from the database of all employees
-    public function getEmployeeslnameasc(){
+    // $result is an array from the database of all contacts
+    public function getContactslnameasc(){
         
         // call global variables for use in this method
         global $host, $name, $port, $char, $uname, $pword;
@@ -193,19 +227,19 @@ class Employees{
         $pass   = "$pword";
         $dbh    = new PDO($dsn, $user, $pass);
 
-        // grab all the employees from the database
-        $st = $dbh->prepare("select empFName, empLName, empPhone, empEmail from employees ORDER BY empLName ASC");
+        // grab all the contacts from the database
+        $st = $dbh->prepare("select contFName, contLName, contPhone, contEmail from contacts ORDER BY contLName ASC");
         $st->execute();
         $result = $st->fetchAll();
         return $result;
     }
 
-    // *********** GET (ALL) EMPLOYEES *********************
+    // *********** GET (ALL) CONTACTS *********************
     // *********** SORT BY LAST NAME DESC *****************
     // nothing is passed in
     // called when $_GET["action"]=="sortlnamedesc" -- (#14)
-    // $result is an array from the database of all employees
-    public function getEmployeeslnamedesc(){
+    // $result is an array from the database of all contacts
+    public function getContactslnamedesc(){
         
         // call global variables for use in this method
         global $host, $name, $port, $char, $uname, $pword;
@@ -216,19 +250,19 @@ class Employees{
         $pass   = "$pword";
         $dbh    = new PDO($dsn, $user, $pass);
 
-        // grab all the employees from the database
-        $st = $dbh->prepare("select empFName, empLName, empPhone, empEmail from employees ORDER BY empLName DESC");
+        // grab all the contacts from the database
+        $st = $dbh->prepare("select contFName, contLName, contPhone, contEmail from contacts ORDER BY contLName DESC");
         $st->execute();
         $result = $st->fetchAll();
         return $result;
     }
 
-    // *********** GET (ALL) EMPLOYEES *********************
+    // *********** GET (ALL) CONTACTS *********************
     // *********** SORT BY PHONE ASC *****************
     // nothing is passed in
     // called when ($_GET["action"]=="sortphoneasc") -- (#15)
-    // $result is an array from the database of all employees
-    public function getEmployeesphoneasc(){
+    // $result is an array from the database of all contacts
+    public function getContactsphoneasc(){
         
         // call global variables for use in this method
         global $host, $name, $port, $char, $uname, $pword;
@@ -239,19 +273,19 @@ class Employees{
         $pass   = "$pword";
         $dbh    = new PDO($dsn, $user, $pass);
 
-        // grab all the employees from the database
-        $st = $dbh->prepare("select empFName, empLName, empPhone, empEmail from employees ORDER BY empPhone ASC");
+        // grab all the contacts from the database
+        $st = $dbh->prepare("select contFName, contLName, contPhone, contEmail from contacts ORDER BY contPhone ASC");
         $st->execute();
         $result = $st->fetchAll();
         return $result;
     }
 
-    // *********** GET (ALL) EMPLOYEES *********************
+    // *********** GET (ALL) CONTACTS *********************
     // *********** SORT BY PHONE DESC *****************
     // nothing is passed in
     // called when $_GET["action"]=="sortphonedesc" -- (#16)
-    // $result is an array from the database of all employees
-    public function getEmployeesphonedesc(){
+    // $result is an array from the database of all contacts
+    public function getContactsphonedesc(){
         
         // call global variables for use in this method
         global $host, $name, $port, $char, $uname, $pword;
@@ -262,19 +296,19 @@ class Employees{
         $pass   = "$pword";
         $dbh    = new PDO($dsn, $user, $pass);
 
-        // grab all the employees from the database
-        $st = $dbh->prepare("select empFName, empLName, empPhone, empEmail from employees ORDER BY empPhone DESC");
+        // grab all the contacts from the database
+        $st = $dbh->prepare("select contFName, contLName, contPhone, contEmail from contacts ORDER BY contPhone DESC");
         $st->execute();
         $result = $st->fetchAll();
         return $result;
     }
 
-    // *********** GET (ALL) EMPLOYEES *********************
+    // *********** GET (ALL) CONTACTS *********************
     // *********** SORT BY EMAIL ASC *****************
     // nothing is passed in
     // called when ($_GET["action"]=="sortemailasc") -- (#17)
-    // $result is an array from the database of all employees
-    public function getEmployeesemailasc(){
+    // $result is an array from the database of all contacts
+    public function getContactsemailasc(){
         
         // call global variables for use in this method
         global $host, $name, $port, $char, $uname, $pword;
@@ -285,19 +319,19 @@ class Employees{
         $pass   = "$pword";
         $dbh    = new PDO($dsn, $user, $pass);
 
-        // grab all the employees from the database
-        $st = $dbh->prepare("select empFName, empLName, empPhone, empEmail from employees ORDER BY empEmail ASC");
+        // grab all the contacts from the database
+        $st = $dbh->prepare("select contFName, contLName, contPhone, contEmail from contacts ORDER BY contEmail ASC");
         $st->execute();
         $result = $st->fetchAll();
         return $result;
     }
 
-    // *********** GET (ALL) EMPLOYEES *********************
+    // *********** GET (ALL) CONTACTS *********************
     // *********** SORT BY EMAIL DESC *****************
     // nothing is passed in
     // called when $_GET["action"]=="sortemaildesc" -- (#17)
-    // $result is an array from the database of all employees
-    public function getEmployeesemaildesc(){
+    // $result is an array from the database of all contacts
+    public function getContactsemaildesc(){
         
         // call global variables for use in this method
         global $host, $name, $port, $char, $uname, $pword;
@@ -308,18 +342,18 @@ class Employees{
         $pass   = "$pword";
         $dbh    = new PDO($dsn, $user, $pass);
 
-        // grab all the employees from the database
-        $st = $dbh->prepare("select empFName, empLName, empPhone, empEmail from employees ORDER BY empEmail DESC");
+        // grab all the contacts from the database
+        $st = $dbh->prepare("select contFName, contLName, contPhone, contEmail from contacts ORDER BY contEmail DESC");
         $st->execute();
         $result = $st->fetchAll();
         return $result;
     }
 
-    // *********** UPDATE EMPLOYEE *********************
+    // *********** UPDATE CONTACT *********************
     // called when ($_GET["action"]=="editAction") -- (#9)
-    // pass in employee ID, first name, last name, phone, and email
+    // pass in contactId, first name, last name, phone, and email
     // nothing is returned; database is updated with current info
-    public function updateEmployee($empId, $empFName, $empLName, $empPhone, $empEmail){
+    public function updateContact($contId, $contFName, $contLName, $contPhone, $contEmail, $contTitle, $contCo, $contDept){
         
         // call global variables for use in this method
         global $host, $name, $port, $char, $uname, $pword;
@@ -331,15 +365,15 @@ class Employees{
         $dbh    = new PDO($dsn, $user, $pass);
 
         // update the values in the database
-        $st = $dbh->prepare("update employees set empFName = :ef, empLName = :el, empPhone = :ep, empEmail = :ee  where empId= :id");
-        $st->execute(array(":id"=>$empId, ":ef"=>$empFName, ":el"=>$empLName, ":ep"=>$empPhone, ":ee"=>$empEmail));
+        $st = $dbh->prepare("update contacts set contFName = :ef, contLName = :el, contPhone = :ep, contEmail = :ee, contTitle = :ti, contCo = :co, contDept = :de  where contId= :id");
+        $st->execute(array(":id"=>$contId, ":ef"=>$contFName, ":el"=>$contLName, ":ep"=>$contPhone, ":ee"=>$contEmail, ":ti"=>$contTitle, ":co"=>$contCo, ":de"=>$contDept));
     }
 
-    // *********** DELETE employee *********************
-    // called when ($_GET["action"]=="deleteEmployee") -- (#10)
-    // pass in employeeid
-    // nothing is returned; database is updated with deletion of employee record
-    public function deleteEmployee($eid){
+    // *********** DELETE CONTACT *********************
+    // called when ($_GET["action"]=="deleteContact") -- (#10)
+    // pass in contactId
+    // nothing is returned; database is updated with deletion of contact record
+    public function deleteContact($eid){
         
         // call global variables for use in this method
         global $host, $name, $port, $char, $uname, $pword;
@@ -351,7 +385,7 @@ class Employees{
         $dbh    = new PDO($dsn, $user, $pass);
 
         // delete user from database
-        $st = $dbh->prepare("delete from employees where empId= :id");
+        $st = $dbh->prepare("delete from contacts where contId= :id");
         $st->execute(array(":id"=>$eid));
 
         session_destroy();
@@ -360,7 +394,7 @@ class Employees{
 
 
 
-} // closes class Employees
+} // closes class Contacts
 
 
 ?>

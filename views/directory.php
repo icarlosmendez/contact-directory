@@ -1,15 +1,15 @@
 
 <!--
-filename:  employeeDirectory.php
+filename:  directory.php
 can access once logged in either from logged in nav bar or profile page
 directed from:  $_GET["action"]=="directory" (#7 on controllers/Action_Controller.php)
-$data is passed in: $data = $employees->getEmployees();
+$data is passed in: $data = $contacts->getContacts();
 -->
 <main>
 <div class="container">
 
 	<div class="upper-spacer">
-		<h2>Employee Directory</h2>
+		<h2>Contact Directory</h2>
 
 		<table class="table">
 			<thead>
@@ -35,13 +35,13 @@ $data is passed in: $data = $employees->getEmployees();
 			<tbody>
 
 			<?php
-				foreach($results as $employee){
+				foreach($results as $contact){
 			?>
 					<tr>
-						<td><?=$employee["empFName"];?></td>
-						<td><?=$employee["empLName"];?></td>
-						<td><?=$employee["empPhone"];?></td>
-						<td><?=$employee["empEmail"];?></td>
+						<td><?=$contact["contFName"];?></td>
+						<td><?=$contact["contLName"];?></td>
+						<td><?=$contact["contPhone"];?></td>
+						<td><?=$contact["contEmail"];?></td>
 					</tr>
 
 			<?php

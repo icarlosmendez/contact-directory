@@ -1,6 +1,6 @@
 ########################
 # Project specific rules
-employees.sql
+# contacts.sql
 
 ###################################
 # dotenv environment variables file

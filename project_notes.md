@@ -5,4 +5,4 @@ Contributors: Carlos Mendez, Kelly Rhodes, Jeff Mendez
 
 Languages/technology used: PHP/MySQL
 Code style is from Orcun
-Project name: Acme Employee Directory
+Project name: Acme Contact Directory

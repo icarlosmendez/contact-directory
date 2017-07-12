@@ -1,6 +1,6 @@
 <!-- Logged-in Header -->
 
-<?php foreach($results as $employee) {?>
+<?php foreach($results as $contact) {?>
 
 <header>
     <nav class="nav-wrapper blue">
@@ -20,7 +20,7 @@
                         <a href='?action=directory'>Directory</a>
                     </li>
                     <li class="col s12">
-                        <a href='?action=profile'>Welcome <?=$employee["empFName"];?>!</a>
+                        <a href='?action=profile'>Welcome <?=$contact["contFName"];?>!</a>
                     </li>
                 </ul>
             </div>

@@ -2,9 +2,9 @@
 <!--
 // filename:  update_form.php
 // directed from: ($_GET["action"]=="update") (#8 on controllers/Action_Controller.php)
-// $data = $employees->getEmployee($_SESSION["empId"]);
+// $data = $contacts->getContact($_SESSION["contId"]);
 // method="POST"
-// action ="?action=editAction" with empId (#9 on controllers/Action_Controller.php)
+// action ="?action=editAction" with contId (#9 on controllers/Action_Controller.php)
 -->
 
 <main>
@@ -13,15 +13,57 @@
             <h3>Update Profile Information</h3>
         
             <?php
-                foreach($results as $emp){
+                foreach($results as $cont){
             ?>
         
-                <form action="?action=editAction" method="POST" >
-                    <input type="text" name ="empFName" value="<?=$emp["empFName"];?>"/></br>
-                    <input type="text" name ="empLName" value="<?=$emp["empLName"];?>"/></br>
-                    <input type="text" name ="empPhone" value="<?=$emp["empPhone"];?>"/></br>
-                    <input type="text" name ="empEmail" value="<?=$emp["empEmail"];?>"/></br>
-                    <input type="hidden" name="empId" value="<?=$emp["empId"];?>"/>
+                <form class="wideform" action="?action=editAction" method="POST" >
+                    <input 
+                        type            ="text" 
+                        name            ="contFName" 
+                        value           ="<?=$cont["contFName"];?>"
+                        placeholder     ="First Name"
+                    /></br>
+                    <input 
+                        type            ="text" 
+                        name            ="contLName" 
+                        value           ="<?=$cont["contLName"];?>"
+                        placeholder     ="Last Name"
+                    /></br>
+                    <input 
+                        type            ="text" 
+                        name            ="contPhone" 
+                        value           ="<?=$cont["contPhone"];?>"
+                        placeholder     ="Phone"
+                    /></br>
+                    <input 
+                        type            ="email" 
+                        name            ="contEmail"
+                        value           ="<?=$cont["contEmail"];?>"
+                        placeholder     ="Email"
+                    /></br>
+                    <input 
+                        type            ="text" 
+                        name            ="contTitle" 
+                        value           ="<?=$cont["contTitle"];?>"
+                        placeholder     ="Job Title"
+                    /></br>
+                    <input 
+                        type            ="text" 
+                        name            ="contCo" 
+                        value           ="<?=$cont["contCo"];?>"
+                        placeholder     ="Company"
+                    /></br>
+                    <input 
+                        type            ="text" 
+                        name            ="contDept" 
+                        value           ="<?=$cont["contDept"];?>"
+                        placeholder     ="Department"
+                    /></br>
+                    <input 
+                        type            ="hidden" 
+                        name            ="contId" 
+                        value           ="<?=$cont["contId"];?>"
+                    />
                     <button class="btn waves-effect right" type="submit">Submit</button>
                 </form>
         
