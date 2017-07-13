@@ -14,6 +14,7 @@ $data is passed in: $data = $contacts->getContacts();
 		<table class="table">
 			<thead>
 				<tr>
+					<th class="headervis">Contact Id </th>
 					<th class="headervis">First Name
 						<a href="?action=sortfnameasc"><img class="asc" src="../public/images/arrow_icon_asc.svg"></a>
 						<a href="?action=sortfnamedesc"><img class="dsc" src="../public/images/arrow_icon_dsc.svg"></a>
@@ -35,9 +36,16 @@ $data is passed in: $data = $contacts->getContacts();
 			<tbody>
 
 			<?php
-				foreach($results as $contact){
+				// echo $_SESSION["contId"];
+				
+				// echo $_SESSION["contId"];
+				foreach($results as $contact) {	
+					$userIds[$contact["contId"]] = $contact["contId"];
+					echo $userIds[$contact["contId"]];
 			?>
 					<tr>
+						<td><a href='?action=viewProfile'><?=$userIds[$contact["contId"]];?></a>
+						</td>
 						<td><?=$contact["contFName"];?></td>
 						<td><?=$contact["contLName"];?></td>
 						<td><?=$contact["contPhone"];?></td>
@@ -45,7 +53,7 @@ $data is passed in: $data = $contacts->getContacts();
 					</tr>
 
 			<?php
-				} // close foreach
+				} // close foreach loop
 			?>
 
 			</tbody>

@@ -15,15 +15,19 @@ directed from:  $_GET["action"]=="directory" (#6 on controllers/Action_Controlle
 
         <div class="upper-spacer">
             <h2>Contact Profile</h2>
+            <div class="card-panel">
+                <p><span class="">First Name:</span>     <?=$contact["contFName"];?></p>
+                <p>Last Name:      <?=$contact["contLName"];?></p>
+                <p>Phone Number:   <?=$contact["contPhone"];?></p>
+                <p>Email:          <?=$contact["contEmail"];?></p>
+                <p>Title:          <?=$contact["contTitle"];?></p>
+                <p>Co:             <?=$contact["contCo"];?></p>
+                <p>Dept:           <?=$contact["contDept"];?></p></br>
+                <p>Username:       <?=$contact["username"];?></p></br>
 
-            <p>First Name:     <?=$contact["contFName"];?></p>
-            <p>Last Name:      <?=$contact["contLName"];?></p>
-            <p>Phone Number:   <?=$contact["contPhone"];?></p>
-            <p>Email:          <?=$contact["contEmail"];?></p>
-            <p>Username:       <?=$contact["username"];?></p>
-
-            <a class='' href='?action=update'>Update</a>&nbsp&nbsp
-            <a class='' href='?action=delete'>Delete Account</a>
+                <a class='' href='?action=update'>Update</a>&nbsp&nbsp
+                <a class='' href='?action=delete'>Delete Account</a>
+            </div>
         </div>
 
 

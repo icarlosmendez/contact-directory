@@ -111,6 +111,18 @@ if(!empty($_GET['action'])){
         $views->getViews("views/footer.php");
     }
 
+    // *********** 6.5 VIEW PROFILE *********************
+    // Profile is from the Nav Bar in header_li.php or from success page
+    // run the function getContact, pass in session var contId
+    // pass $data into the view profile.php
+    else if ($_GET["action"]=="viewProfile"){
+        $data = $contacts->getContact($userIds);
+        $views->getViews("views/head.php");
+        $views->getViews("views/header_li.php");
+        $views->getViews("views/profile.php", $data);
+        $views->getViews("views/footer.php");
+    }
+
 	// *********** 7. DIRECTORY *********************
     // Directory is from the Nav Bar in header_li.php or from profile
     // run the function getContacts, pass result into $data
@@ -118,6 +130,7 @@ if(!empty($_GET['action'])){
     else if ($_GET["action"]=="directory"){
         $data1 = $contacts->getContact($_SESSION["contId"]);
         $data2 = $contacts->getContacts();
+        // var_dump($data2);
         $views->getViews("views/head.php");
         $views->getViews("views/header_li.php",$data1);
         $views->getViews("views/directory.php",$data2);

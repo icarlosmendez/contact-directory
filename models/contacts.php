@@ -96,7 +96,7 @@ class Contacts{
         $pass   = "$pword";
         $dbh    = new PDO($dsn, $user, $pass);
 
-        // grab all users with matching userid's (should be one!)
+        // grab all users with matching userid's (should only be one!)
         // return result
         $st = $dbh->prepare("select contFName, contLName, contPhone, contEmail, contTitle, contCo, contDept, username from contacts where contId = :id");
         $st->execute(array(":id"=>$eid));
@@ -159,7 +159,7 @@ class Contacts{
         $dbh    = new PDO($dsn, $user, $pass);
 
         // grab all the contacts from the database
-        $st = $dbh->prepare("select contFName, contLName, contPhone, contEmail from contacts");
+        $st = $dbh->prepare("select contFName, contLName, contPhone, contEmail, contId from contacts");
         $st->execute();
         $result = $st->fetchAll();
         return $result;
