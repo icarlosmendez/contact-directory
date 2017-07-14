@@ -22,7 +22,7 @@
 	<div class="footer-copyright">
 
 		<div class="container">
-			<span class="copyright">© 2015 ACME Intl</span>
+			<span class="copyright">&copy; Copyright <?php echo date('Y ') ?> 24Seven Graphics All Rights Reserved</span>
 		</div>
 
 	</div>

@@ -10,6 +10,7 @@
     $uname  = getenv('DB_USER');
     $pword  = getenv('DB_PASS');
 
+    $_CONTACT;
     // var_dump($name);
 
 // Create "Contacts" Class (aka object)
@@ -75,14 +76,59 @@ class Contacts{
                 );
 
         // pull last value created from database & save as a session var
-        $st = $dbh->prepare("SELECT max(contId) FROM contacts;");
-        $st->execute();
-        $_SESSION["contId"] = $st->fetchColumn();
+        // $st = $dbh->prepare("SELECT max(contId) FROM contacts;");
+        // $st->execute();
+        // $_SESSION["contId"] = $st->fetchColumn();
     }
 
-    // *********** GET (SINGLE) contact *********************
+    // *********** View profile (SINGLE) user *********************
     // called when contact successfully creates account (success page)
     // or when they succesfully log in when
+    // pass in contactId
+    // $result is an array from the database with contactId matching the one passed into it
+    public function getUser($eid){
+
+        // call global variables for use in this method
+        global $host, $name, $port, $char, $uname, $pword;
+
+        // access database
+        $dsn    = "mysql:host=$host; dbname=$name; port=$port; char=$char";
+        $user   = "$uname";
+        $pass   = "$pword";
+        $dbh    = new PDO($dsn, $user, $pass);
+
+        // grab all users with matching userid's (should only be one!)
+        // return result
+        $st = $dbh->prepare("select contFName, contLName, contPhone, contEmail, contTitle, contCo, contDept, username from contacts where contId = :id");
+        $st->execute(array(":id"=>$eid));
+        $result = $st->fetchAll();
+        return $result;
+    }
+
+    // *********** Get User Ids *********************
+    // called when user successfully logs in when
+    // pass in contactId
+    // $result is an array from the database with all userIds
+    public function getUserIds(){
+
+        // call global variables for use in this method
+        global $host, $name, $port, $char, $uname, $pword;
+
+        // access database
+        $dsn    = "mysql:host=$host; dbname=$name; port=$port; char=$char";
+        $user   = "$uname";
+        $pass   = "$pword";
+        $dbh    = new PDO($dsn, $user, $pass);
+
+        // pull userIds from database & save as a session var
+        $st = $dbh->prepare("SELECT contId FROM contacts;");
+        $st->execute();
+        $_SESSION["userIds"] = $st->fetchColumn();
+        return $_SESSION["userIds"];
+    }
+
+    // *********** View profile (SINGLE) contact *********************
+    // called when user clicks on contacts userId on directory page
     // pass in contactId
     // $result is an array from the database with contactId matching the one passed into it
     public function getContact($eid){
@@ -131,9 +177,9 @@ class Contacts{
         $sth->execute();
         $result = $sth->fetchAll();
 
-        // If the result of the 1st array item contains an 'contact id', let the user know they have successfully logged in
+        // If the result of the 1st array item contains a 'contact id', let the user know they have successfully logged in
         if (isset($result[0]["contId"])) {
-            $_SESSION["contId"] = $result[0]["contId"];
+            $_SESSION["userId"] = $result[0]["contId"];
             return TRUE;
         }
 

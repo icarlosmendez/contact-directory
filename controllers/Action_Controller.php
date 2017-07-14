@@ -82,11 +82,16 @@ if(!empty($_GET['action'])){
                                 $_POST["password"]
                             );
 
+
         if($loggedIn){
-            $data = $contacts->getContact($_SESSION["contId"]);
+            $data = $contacts->getUser($_SESSION["userId"]);
+            // If the login is TRUE, pull the userIds from database
+            // and store in the following session variable for later use.
+            $_SESSION["userIds"] = $contacts->getUserIds();
+            var_dump($_SESSION["userIds"]);
             $views->getViews("views/head.php");
             $views->getViews("views/header_li.php",$data);
-            $views->getViews("views/profile.php", $data);
+            $views->getViews("views/profile_user.php", $data);
             $views->getViews("views/footer.php");
         }
 
@@ -99,27 +104,30 @@ if(!empty($_GET['action'])){
 
     }
 
-    // *********** 6. PROFILE *********************
-    // Profile is from the Nav Bar in header_li.php or from success page
-    // run the function getContact, pass in session var contId
+    // *********** 6. VIEW USER (OWN) PROFILE *********************
+    // User profile is accessed from the Nav Bar in header_li.php or from success page
+    // run the function getUser, pass in session var contId
     // pass $data into the view profile.php
-    else if ($_GET["action"]=="profile"){
-        $data = $contacts->getContact($_SESSION["contId"]);
+    else if ($_GET["action"]=="viewProfileUser"){
+        $data = $contacts->getUser($_SESSION["userId"]);
         $views->getViews("views/head.php");
-        $views->getViews("views/header_li.php",$data);
-        $views->getViews("views/profile.php", $data);
+        $views->getViews("views/header_li.php", $data);
+        $views->getViews("views/profile_user.php", $data);
         $views->getViews("views/footer.php");
     }
 
-    // *********** 6.5 VIEW PROFILE *********************
-    // Profile is from the Nav Bar in header_li.php or from success page
+    // *********** 6.5 VIEW CONTACT PROFILE *********************
+    // Contact profile is from the directory page
     // run the function getContact, pass in session var contId
     // pass $data into the view profile.php
-    else if ($_GET["action"]=="viewProfile"){
-        $data = $contacts->getContact($userIds);
+    else if ($_GET["action"]=="viewProfileContact"){
+        // var_dump($_CONTACT[0]["contId"]);
+        
+        $data = $contacts->getContact($_SESSION["userIds"]);
+        
         $views->getViews("views/head.php");
-        $views->getViews("views/header_li.php");
-        $views->getViews("views/profile.php", $data);
+        $views->getViews("views/header_li.php", $data);
+        $views->getViews("views/profile_contact.php", $data);
         $views->getViews("views/footer.php");
     }
 
@@ -128,7 +136,7 @@ if(!empty($_GET['action'])){
     // run the function getContacts, pass result into $data
     // pass $data into the view directory.php
     else if ($_GET["action"]=="directory"){
-        $data1 = $contacts->getContact($_SESSION["contId"]);
+        $data1 = $contacts->getUser($_SESSION["userId"]);
         $data2 = $contacts->getContacts();
         // var_dump($data2);
         $views->getViews("views/head.php");
@@ -141,7 +149,7 @@ if(!empty($_GET['action'])){
     else if ($_GET["action"]=="update"){
         // run function getUser by using the userid, pass results into $data
         // pass $data into the view update_form.php
-        $data = $contacts->getContact($_SESSION["contId"]);
+        $data = $contacts->getContact($_SESSION["userId"]);
         $views->getViews("views/head.php");
         $views->getViews("views/header_li.php",$data);
         $views->getViews("views/updateForm.php",$data);
@@ -163,7 +171,7 @@ if(!empty($_GET['action'])){
                     $_POST["contCo"],
                     $_POST["contDept"]
                 );
-        header("location:?action=profile");
+        header("location:?action=viewProfileUser");
     }
     // *********** 10. DELETE CONTACT *********************
     else if ($_GET["action"]=="delete"){

@@ -1,5 +1,5 @@
 {
-  "name": "contact directory",
+  "name": "contact-directory",
   "version": "1.0.0",
   "private": true,
   "description": "simple directory app built in vanilla PHP",

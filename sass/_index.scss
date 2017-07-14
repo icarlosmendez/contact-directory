@@ -1,7 +1,10 @@
+//* I am styles written by Carlos Mendez for use in th contact-directory project *//
+
 // this document is informed by http://sass-guidelin.es/
 
 // sass extensions
-@import "normalize";
+@import "normalize.min";
+@import "materialize";
 
 // Utilites
 @import "functions";
@@ -22,13 +25,12 @@
 
 // Components
 @import "images";
+@import "links";
+@import "lists";
 @import "ui";
 
 // Pages
 @import "directory";
 // @import "profile";
 
-// Themed Elements
-@import "images";
-@import "links";
-@import "lists";
+

@@ -1,13 +1,13 @@
 <!-- Logged-in Header -->
 
-<?php foreach($results as $contact) {?>
+<?php foreach($results as $user) {?>
 
 <header>
     <nav class="nav-wrapper blue">
         <div class="container">
             <div class="col s12 m6">
                 <a href="?" class="left">
-                    <img class="asc" src="../public/images/acme_logo.png" id="logo" />
+                    <img class="asc" src="../public/images/247_logo.svg" id="logo" />
                 </a>
             </div>
 
@@ -20,7 +20,7 @@
                         <a href='?action=directory'>Directory</a>
                     </li>
                     <li class="col s12">
-                        <a href='?action=profile'>Welcome <?=$contact["contFName"];?>!</a>
+                        <a href='?action=viewProfileUser'>Welcome <?=$user["contFName"];?>!</a>
                     </li>
                 </ul>
             </div>

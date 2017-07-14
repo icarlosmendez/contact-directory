@@ -6,7 +6,7 @@
         <div class="container">
             <div class="col s4 m6">
                 <a href="?" class="left">
-                    <img src="../public/images/acme_logo.png" id="logo" />
+                    <img src="../public/images/247_logo.svg" id="logo" />
                 </a>
             </div>
 

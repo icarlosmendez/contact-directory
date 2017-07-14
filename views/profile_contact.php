@@ -1,10 +1,9 @@
-
 <!--
-Filename:  profile.php
+Filename:  profile_contact.php
 Once a user has sucessfully created an account or logged in,
-they can access their profile page which will allow them
-to update their info, see the full contact directory or log out
-directed from:  $_GET["action"]=="directory" (#6 on controllers/Action_Controller.php)
+they can access the profile of any contact in the database 
+from the directory page to update the contact record
+directed from:  $_GET["action"]=="viewProfileContact" (#6 on controllers/Action_Controller.php)
 -->
 <?php
     foreach( $results as $contact ){

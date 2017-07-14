@@ -18,23 +18,39 @@ autoprefixer = require('gulp-autoprefixer'),
 
 // mapping for js and sass/css files
 // easing troubleshooting in the browser
-        maps = require('gulp-sourcemaps');
+        maps = require('gulp-sourcemaps'),
 
+//style paths
+   sassFiles = 'sass/**/*.scss',  
+     cssDest = 'css/build';
 
 /* =========== Development Tasks =========== */
 
 // SASS
-/*gulp.task('compileSass', function() {
+gulp.task('preClean', function() {
+    del([
+         // 'css/build/main.pure.css', 
+         // 'css/build/main.compiled.css',
+         // 'css/build/main.compiled.css.map'
+        ]);
+});
+gulp.task('compileSass', ['preClean'], function() {
     return gulp.src('sass/main.scss')
         .pipe(maps.init())
         .pipe(sass.sync().on('error', sass.logError))
-        .pipe(rename('main.vanilla.css'))
-        .pipe(maps.write('./'))
-        .pipe(gulp.dest('css/dist'));
-});*/
+        .pipe(rename('main.compiled.css'))
+        .pipe(gulp.dest('css/build'));
+});
 
-gulp.task('prefixCss', /*['compileSass'],*/ function() {
-    return gulp.src('css/build/main.vanilla.css')
+gulp.task('purifyCss', ['compileSass'], function() {
+  return gulp.src('css/build/main.compiled.css')
+    .pipe(purify(['./views/*.php']))
+    .pipe(rename('main.pure.css'))
+    .pipe(gulp.dest('css/build'))
+});
+
+gulp.task('prefixCss', ['purifyCss'], function() {
+    return gulp.src('css/build/main.pure.css')
         .pipe(maps.init())
         .pipe(autoprefixer({
             browsers: ['last 2 versions'],
@@ -42,29 +58,21 @@ gulp.task('prefixCss', /*['compileSass'],*/ function() {
         }))
         .pipe(rename('main.prefixd.css'))
         .pipe(maps.write('./'))
-        .pipe(gulp.dest('css/dist'));
+        .pipe(gulp.dest('css/build'));
 });
 
-gulp.task('purifyCss', ['prefixCss'], function() {
-  return gulp.src('css/dist/main.prefixd.css')
-    .pipe(purify(['./views/*.php']))
-    .pipe(rename('main.pure.css'))
-    .pipe(gulp.dest('css/dist'))
-});
-
-gulp.task('minifyCss', ['purifyCss'], function() {
-    return gulp.src('css/dist/main.pure.css')
+gulp.task('minifyCss', ['prefixCss'], function() {
+    return gulp.src('css/build/main.prefixd.css')
         .pipe(cssmin())
         .pipe(rename('main.min.css'))
         .pipe(gulp.dest('css/dist'))
 });
 
 gulp.task('removeCss', ['minifyCss'], function() {
-    del(['css/dist/main.vanilla.css', 
-         'css/dist/main.vanilla.css.map',
-         'css/dist/main.prefixd.css',
-         'css/dist/main.prefixd.css.map', 
-         'css/dist/main.pure.css'
+    del([
+         'css/build/main.pure.css',
+         'css/build/main.compiled.css', 
+         'css/build/main.compiled.css.map'
         ]);
 });
 
@@ -75,17 +83,22 @@ gulp.task('devStyles', ['removeCss'], function() {
 
 /* =========== Development Tasks =========== */
 
-gulp.task('watch', function() {
-    return gulp.watch('sass/**/*.scss', ['compileSass']).on('change', browserSync.reload);
-    return gulp.watch('js/**/*.js', ['devlint']).on('change', browserSync.reload);
-    return gulp.watch("/application/views/**/*.php").on("change", browserSync.reload);
+gulp.task('watch',function() {  
+    gulp.watch(sassFiles,['devStyles']);
 });
 
-gulp.task('serve', ['watch'], function() {
-    browserSync.init({
-        proxy: 'localhost:8888'
-    });
-});
+// Below are older dev tasks brought in from a different project. Don't want to throw them away just yet.
+// gulp.task('watch', function() {
+//     return gulp.watch('sass/**/*.scss', ['compileSass']).on('change', browserSync.reload);
+//     return gulp.watch('js/**/*.js', ['devlint']).on('change', browserSync.reload);
+//     return gulp.watch("/application/views/**/*.php").on("change", browserSync.reload);
+// });
+
+// gulp.task('serve', ['watch'], function() {
+//     browserSync.init({
+//         proxy: 'localhost:8888'
+//     });
+// });
 
 
 /* =========== Deployment tasks =========== */

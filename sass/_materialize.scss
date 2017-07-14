@@ -8,7 +8,9 @@
 @import "components/variables";
 
 // Reset
-@import "components/normalize";
+// This is already being imported in a minified version 
+// will leave here commented out
+// @import "components/normalize"; 
 
 // components
 @import "components/global";
