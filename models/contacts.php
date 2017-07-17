@@ -40,51 +40,6 @@ class Contacts{
 
     }
 
-    // **************** View profile (SINGLE) contact *********************
-    // called when user clicks on contacts userId on directory page
-    // pass in contactId
-    // $result is an array from the database with contactId matching the one passed into it
-    public function getContact($eid){
-
-        // call global variables for use in this method
-        global $host, $name, $port, $char, $uname, $pword;
-
-        // access database
-        $dsn    = "mysql:host=$host; dbname=$name; port=$port; char=$char";
-        $user   = "$uname";
-        $pass   = "$pword";
-        $dbh    = new PDO($dsn, $user, $pass);
-
-        // grab all users with matching userid's (should only be one!)
-        // return result
-        $st = $dbh->prepare("SELECT contFName, contLName, contPhone, contEmail, contTitle, contCo, contDept, username FROM contacts WHERE contId = :id");
-        $st->execute(array(":id"=>$eid));
-        $result = $st->fetchAll();
-        return $result;
-    }
-
-	// **************** GET (ALL) CONTACTS *********************
-    // nothing is passed in
-    // called when ($_GET["action"]=="directory") -- (#?)
-    // $result is an array from the database of all contacts
-    public function getContacts(){
-       
-        // call global variables for use in this method
-        global $host, $name, $port, $char, $uname, $pword;
-
-        // access database
-        $dsn    = "mysql:host=$host; dbname=$name; port=$port; char=$char";
-        $user   = "$uname";
-        $pass   = "$pword";
-        $dbh    = new PDO($dsn, $user, $pass);
-
-        // grab all the contacts from the database
-        $st = $dbh->prepare("SELECT contFName, contLName, contPhone, contEmail, contId FROM contacts");
-        $st->execute();
-        $result = $st->fetchAll();
-        return $result;
-    }
-
     // **************** UPDATE CONTACT *********************
     // called when ($_GET["action"]=="editAction") -- (#?)
     // pass in contactId, first name, last name, phone, and email
@@ -124,6 +79,52 @@ class Contacts{
         $st = $dbh->prepare("DELETE FROM contacts WHERE contId= :id");
         $st->execute(array(":id"=>$eid));
 
+    }
+
+    // **************** View profile (SINGLE) contact *********************
+    // called when user clicks on contacts userId on directory page
+    // pass in contactId
+    // $result is an array from the database with contactId matching the one passed into it
+    public function getContact($eid){
+
+        // call global variables for use in this method
+        global $host, $name, $port, $char, $uname, $pword;
+
+        // access database
+        $dsn    = "mysql:host=$host; dbname=$name; port=$port; char=$char";
+        $user   = "$uname";
+        $pass   = "$pword";
+        $dbh    = new PDO($dsn, $user, $pass);
+
+        // grab all users with matching userid's (should only be one!)
+        // return result
+        $st = $dbh->prepare("SELECT contFName, contLName, contPhone, contEmail, contTitle, contCo, contDept, username FROM contacts WHERE contId = :id");
+        $st->execute(array(":id"=>$eid));
+        $result = $st->fetchAll();
+        var_dump($result);
+        return $result;
+    }
+
+    // **************** GET (ALL) CONTACTS *********************
+    // nothing is passed in
+    // called when ($_GET["action"]=="directory") -- (#?)
+    // $result is an array from the database of all contacts
+    public function getContacts(){
+       
+        // call global variables for use in this method
+        global $host, $name, $port, $char, $uname, $pword;
+
+        // access database
+        $dsn    = "mysql:host=$host; dbname=$name; port=$port; char=$char";
+        $user   = "$uname";
+        $pass   = "$pword";
+        $dbh    = new PDO($dsn, $user, $pass);
+
+        // grab all the contacts from the database
+        $st = $dbh->prepare("SELECT contFName, contLName, contPhone, contEmail, contId FROM contacts");
+        $st->execute();
+        $result = $st->fetchAll();
+        return $result;
     }
 
 } // closes class Contacts

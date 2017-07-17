@@ -50,7 +50,7 @@ $data is passed in: $data = $contacts->getContacts();
 
 					<tr>
 						<td>
-							<a href='?action=viewProfileContact'>
+							<a href='?action=viewProfileContact/<?=$contact["contId"];?>'>
 								<?=$contact["contId"];?>
 							</a>
 						</td>
@@ -60,7 +60,7 @@ $data is passed in: $data = $contacts->getContacts();
 						<td><?=$contact["contEmail"];?></td>
 						<td>
 							<a href='?action=deleteContact'>
-								<img class="trash right" src="public/images/trash_delete.svg" alt="Delete" title="Delete" />
+								<img class="trash right" role="button" src="public/images/trash_delete.svg" alt="Delete" title="Delete" />
 							</a>
 						</td>
 					</tr>

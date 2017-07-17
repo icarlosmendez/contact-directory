@@ -170,8 +170,10 @@ if(!empty($_GET['action'])){
         // run the function deleteContact, pass in the contactId
         // terminate session
         // redirect to the splash page
-        $contacts->deleteContact($_SESSION["contId"]);
-        header("location:?splash");
+        $data = $contacts->getContact($_SESSION["contId"]);
+        var_dump($data);
+        $contacts->deleteContact($data);
+        header("location:?directory");
     }
 
     // *********** ADD CONTACT FORM VIEW *********************
