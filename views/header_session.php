@@ -14,7 +14,7 @@
             <div class="col s12 m4">
                 <ul class="right">
                     <li class="col s12">
-                        <a href='?action=logout'>Log Out</a>
+                        <a href='?action=logout'>Sign Out</a>
                     </li>
                     <li class="col s12">
                         <a href='?action=directory'>Directory</a>

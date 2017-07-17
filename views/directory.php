@@ -9,9 +9,17 @@ $data is passed in: $data = $contacts->getContacts();
 <div class="container">
 
 	<div class="upper-spacer">
-		<h2>Contact Directory</h2>
+		<div class="row">
+			<div class="col s6">
+				<h2 class="">Contact Directory</h2>
+			</div>
+			<div class="col s6">
+				<a class="btn right" href='?action=addContact'>Add Contact</a>
+			</div>
+		</div>
 
 		<table class="table">
+			<!-- Table Head is comprised of the Column names and sorting icons/buttons -->
 			<thead>
 				<tr>
 					<th class="headervis">Contact Id </th>
@@ -33,24 +41,29 @@ $data is passed in: $data = $contacts->getContacts();
 					</th>
 				</tr>
 			</thead>
-			<tbody>
 
+			<!-- Table body is comprised of the user data output by a foreach loop -->
+			<tbody>
 			<?php
-				foreach($results as $contact) {
+				foreach($results as $contact) {	
 			?>
+
 					<tr>
 						<td>
 							<a href='?action=viewProfileContact'>
-								<?=$_SESSION["userIds"];?>
+								<?=$contact["contId"];?>
 							</a>
 						</td>
 						<td><?=$contact["contFName"];?></td>
 						<td><?=$contact["contLName"];?></td>
 						<td><?=$contact["contPhone"];?></td>
 						<td><?=$contact["contEmail"];?></td>
+						<td>
+							<a href='?action=deleteContact'>
+								<img class="trash right" src="public/images/trash_delete.svg" alt="Delete" title="Delete" />
+							</a>
+						</td>
 					</tr>
-
-
 
 			<?php
 				} // close foreach loop

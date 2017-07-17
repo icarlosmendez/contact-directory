@@ -23,6 +23,6 @@ $dotenv->required(['DB_HOST', 'DB_NAME', 'DB_PORT', 'DB_CHAR', 'DB_USER', 'DB_PA
 
 /*** CONTROLLER ONBOARDING ***/
 // Call on Action_Controller for routing users
-include ("controllers/Action_Controller.php");
+include ("controllers/controller_main.php");
 
 ?>

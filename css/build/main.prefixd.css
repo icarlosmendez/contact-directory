@@ -570,6 +570,10 @@ input[type=range] {
   content: "\e621";
 }
 
+.mdi-action-get-app:before {
+  content: "\e630";
+}
+
 .mdi-action-https:before {
   content: "\e637";
 }
@@ -584,6 +588,14 @@ input[type=range] {
 
 .mdi-action-label:before {
   content: "\e63c";
+}
+
+.mdi-content-add:before {
+  content: "\e6fb";
+}
+
+.mdi-content-content-copy:before {
+  content: "\e703";
 }
 
 .mdi-content-link:before {
@@ -1787,8 +1799,7 @@ input[type=range]:focus::-ms-fill-upper {
  * animation-delay and instead set custom keyframes for each color (as redundant as it
  * seems).
  *
- * We write out each animation in full (instead of separating animation-name,
- * animation-duration, etc.) because under the polyfill, Safari does not recognize those
+ * We write out each animation in full (instead of separating animation-name, * animation-duration, etc.) because under the polyfill, Safari does not recognize those
  * specific properties properly, treats them as -webkit-animation, and overrides the
  * other animation rules. See https://github.com/Polymer/platform/issues/53.
  */

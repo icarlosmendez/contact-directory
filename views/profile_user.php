@@ -25,7 +25,7 @@ directed from:  $_GET["action"]=="directory" (#6 on controllers/Action_Controlle
                 <p>Dept:           <?=$user["contDept"];?></p></br>
                 <p>Username:       <?=$user["username"];?></p></br>
 
-                <a class='' href='?action=update'>Update</a>&nbsp&nbsp
+                <a class='' href='?action=updateUser'>Update</a>&nbsp&nbsp
                 <a class='' href='?action=delete'>Delete Account</a>
             </div>
         </div>

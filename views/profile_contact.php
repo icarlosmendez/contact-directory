@@ -25,7 +25,7 @@ directed from:  $_GET["action"]=="viewProfileContact" (#6 on controllers/Action_
                 <p>Username:       <?=$contact["username"];?></p></br>
 
                 <a class='' href='?action=update'>Update</a>&nbsp&nbsp
-                <a class='' href='?action=delete'>Delete Account</a>
+                <a class='' href='?action=deleteContact'>Delete Contact</a>
             </div>
         </div>
 
