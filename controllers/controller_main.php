@@ -26,7 +26,7 @@ if(!empty($_GET['action'])){
         $views->getViews("views/footer.php");
     }
 
-    // *********** SIGN UP A NEW CONTACT *********************
+    // *********** SIGN UP A NEW USER *********************
     // When the user hits "submit" from the Signup Form,
     // the addContact function is run.
     // pass in contFName, contLName, contPhone, contEmail, username, password
@@ -34,15 +34,13 @@ if(!empty($_GET['action'])){
     // addContact returns all info associated with account, stored into $data
     // The user will be redirected to the Success Sign Up page with $data
     else if($_GET["action"]=="newUserAction"){
-        $contacts->addContact(
-                    $_POST["contFName"],
-                    $_POST["contLName"],
-                    $_POST["contPhone"],
-                    $_POST["contEmail"],
-                    $_POST["contTitle"],
-                    $_POST["contCo"],
-                    $_POST["contDept"],
-                    $_POST["uName"],
+        $users->addUser(
+                    $_POST["userFName"],
+                    $_POST["userLName"],
+                    $_POST["userPhone"],
+                    $_POST["userEmail"],
+                    $_POST["userTitle"],
+                    $_POST["username"],
                     $_POST["password"]
                 );
         header("location:?action=successSignUp");
@@ -54,14 +52,14 @@ if(!empty($_GET['action'])){
     // getContact will run to pull the information from the database and store as $data
     // the information will then be passed into successSignUp.php
     else if ($_GET["action"]=="successSignUp"){
-        $data = $contacts->getContact($_SESSION["contId"]);
+        $data = $users->getUser($_SESSION["userId"]);
         $views->getViews("views/head.php");
         $views->getViews("views/header_session.php",$data);
         $views->getViews("views/successSignUp.php",$data);
         $views->getViews("views/footer.php");
     }
 
-    // *********** LOGIN *********************
+    // *********** SIGN IN *********************
     // If a user has a previously created account
     // They can choose to login and will be redirected to the signin Form
     else if ($_GET["action"]=="signin"){
@@ -71,7 +69,7 @@ if(!empty($_GET['action'])){
         $views->getViews("views/footer.php");
     }
 
-    // *********** LOGIN VERIFICATION *********************
+    // *********** SIGN IN VERIFICATION *********************
     // After an existing user hits submit to login
     // username & password will be passed via POST to the verifyContact method
     // The POST values will be compared to what's stored in the database
@@ -79,8 +77,8 @@ if(!empty($_GET['action'])){
     // If login is successful, they will be redirected to their profile page
     // Otherwise, they will be redirected to an error page
     else if ($_GET["action"]=="signinAction"){
-        $loggedIn = $contacts->verifyUser(
-                                $_POST["uName"],
+        $loggedIn = $users->verifyUser(
+                                $_POST["username"],
                                 $_POST["password"]
                             );
 
@@ -129,7 +127,7 @@ if(!empty($_GET['action'])){
     // run the function getContacts, pass result into $data
     // pass $data into the view directory.php
     else if ($_GET["action"]=="directory"){
-        $data1 = $contacts->getUser($_SESSION["userId"]);
+        $data1 = $users->getUser($_SESSION["userId"]);
         $data2 = $contacts->getContacts();
         // var_dump($data2);
         $views->getViews("views/head.php");
@@ -207,92 +205,8 @@ if(!empty($_GET['action'])){
         header("location:?action=successSignUp");
     }
 
-
-
-
-    // *********** TABLE SORTING FUNCTIONS: *********************
-    // *********** SORT BY FIRST NAME ASCENDING *************
-    else if ($_GET["action"]=="sortfnameasc"){
-        $data1 = $contacts->getContact($_SESSION["contId"]);
-        $data2 = $contacts->getContactsfnameasc();
-        $views->getViews("views/head.php");
-        $views->getViews("views/header_session.php",$data1);
-        $views->getViews("views/directory.php",$data2);
-        $views->getViews("views/footer.php");
-    }
-
-    // *********** SORT BY FIRST NAME DESCENDING *************
-    else if ($_GET["action"]=="sortfnamedesc"){
-        $data1 = $contacts->getContact($_SESSION["contId"]);
-        $data2 = $contacts->getContactsfnamedesc();
-        $views->getViews("views/head.php");
-        $views->getViews("views/header_session.php",$data1);
-        $views->getViews("views/directory.php",$data2);
-        $views->getViews("views/footer.php");
-    }
-
-    // *********** SORT BY LAST NAME ASCENDING *************
-    else if ($_GET["action"]=="sortlnameasc"){
-        $data1 = $contacts->getContact($_SESSION["contId"]);
-        $data2 = $contacts->getContactslnameasc();
-        $views->getViews("views/head.php");
-        $views->getViews("views/header_session.php",$data1);
-        $views->getViews("views/directory.php",$data2);
-        $views->getViews("views/footer.php");
-    }
-
-    // *********** SORT BY LAST NAME DESCENDING *************
-    else if ($_GET["action"]=="sortlnamedesc"){
-        $data1 = $contacts->getContact($_SESSION["contId"]);
-        $data2 = $contacts->getContactslnamedesc();
-        $views->getViews("views/head.php");
-        $views->getViews("views/header_session.php",$data1);
-        $views->getViews("views/directory.php",$data2);
-        $views->getViews("views/footer.php");
-    }
-
-    // *********** SORT BY PHONE ASCENDING *************
-    else if ($_GET["action"]=="sortphoneasc"){
-        $data1 = $contacts->getContact($_SESSION["contId"]);
-        $data2 = $contacts->getContactsphoneasc();
-        $views->getViews("views/head.php");
-        $views->getViews("views/header_session.php",$data1);
-        $views->getViews("views/directory.php",$data2);
-        $views->getViews("views/footer.php");
-    }
-
-    // *********** SORT BY PHONE DESCENDING *************
-    else if ($_GET["action"]=="sortphonedesc"){
-        $data1 = $contacts->getContact($_SESSION["contId"]);
-        $data2 = $contacts->getContactsphonedesc();
-        $views->getViews("views/head.php");
-        $views->getViews("views/header_session.php",$data1);
-        $views->getViews("views/directory.php",$data2);
-        $views->getViews("views/footer.php");
-    }
-
-    // *********** SORT BY EMAIL ASCENDING *************
-    else if ($_GET["action"]=="sortemailasc"){
-        $data1 = $contacts->getContact($_SESSION["contId"]);
-        $data2 = $contacts->getContactsemailasc();
-        $views->getViews("views/head.php");
-        $views->getViews("views/header_session.php",$data1);
-        $views->getViews("views/directory.php",$data2);
-        $views->getViews("views/footer.php");
-    }
-
-    // *********** SORT BY EMAIL DESCENDING *************
-    else if ($_GET["action"]=="sortemaildesc"){
-        $data1 = $contacts->getContact($_SESSION["contactsId"]);
-        $data2 = $contacts->getContactsemaildesc();
-        $views->getViews("views/head.php");
-        $views->getViews("views/header_session.php",$data1);
-        $views->getViews("views/directory.php",$data2);
-        $views->getViews("views/footer.php");
-    }
-
     // *********** SIGNOUT *************
-    else if ($_GET["action"]=="logout"){
+    else if ($_GET["action"]=="signout"){
         session_destroy();
         header("Location: index.php");
     }

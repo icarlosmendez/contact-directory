@@ -7,7 +7,7 @@
 // users can then go to their profile, go to the contact directory or log out
 -->
 <?php
-    foreach($results as $contact){
+    foreach($results as $user){
 ?>
 
 <main>
@@ -16,15 +16,15 @@
             <h2>You have successfully signed up!</h2>
             <h3>Below are your account details:</h3>
     
-            <p>First Name:      <?=$contact["contFName"];?></p>
-            <p>Last Name:       <?=$contact["contLName"];?></p>
-            <p>Phone Number:    <?=$contact["contPhone"];?></p>
-            <p>Email:           <?=$contact["contEmail"];?></p>
-            <p>Username:        <?=$contact["username"];?></p>
+            <p>First Name:      <?=$user["userFName"];?></p>
+            <p>Last Name:       <?=$user["userLName"];?></p>
+            <p>Phone Number:    <?=$user["userPhone"];?></p>
+            <p>Email:           <?=$user["userEmail"];?></p>
+            <p>Username:        <?=$user["username"];?></p>
     
             <a class='' role='button' href='?action=profile'>Profile</a>
             <a class='' role='button' href='?action=directory'>Directory</a>
-            <a class='' role='button' href='?action=logout'>Log Out</a>
+            <a class='' role='button' href='?action=signout'>Sign Out</a>
         </div>
 
     </div><!-- closes contianer -->

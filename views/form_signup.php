@@ -1,8 +1,8 @@
 
 <!--
 Filename:  signupForm.php
-Description:  This file takes user input and with addContactAction from the controller
-adds a new contact to the database
+Description:  This file takes user input and with adduseractAction from the userroller
+adds a new useract to the database
 A user can access this from the nav bar (when not logged in)
 -->
 
@@ -10,79 +10,59 @@ A user can access this from the nav bar (when not logged in)
 <main>
     <div class="container">
         <div class="upper-spacer">
-            <form class="wideform" action="?action=addContactAction" method="POST">
+            <form class="wideform" action="?action=newUserAction" method="POST">
                 <h2>Sign Up</h2>
 
                 <div class='row'>
                     <div class="">
-                        <!-- <label for="contFName">First Name</label> -->
+                        <!-- <label for="userFName">First Name</label> -->
                         <input 
                             type            ="text" 
                             class           ="" 
-                            name            ="contFName" 
+                            name            ="userFName" 
                             id              ="firstname" 
                             placeholder     ="First Name" 
                             autofocus
                          /></br>
                     </div>
                     <div class="">
-                        <!-- <label for="contLName">Last Name</label> -->
+                        <!-- <label for="userLName">Last Name</label> -->
                         <input 
                             type            ="text" 
                             class           ="" 
-                            name            ="contLName" 
+                            name            ="userLName" 
                             id              ="lastname" 
                             placeholder     ="Last Name" 
                         /></br>
                     </div>
                     <div class="">
-                        <!-- <label for="contPhone">Phone</label> -->
+                        <!-- <label for="userPhone">Phone</label> -->
                         <input 
                             type            ="tel" 
                             class           ="" 
-                            name            ="contPhone" 
+                            name            ="userPhone" 
                             id              ="" 
                             placeholder     ="Phone Number"
                         /></br>
                     </div>
                     <div class="">
-                        <!-- <label for="contEmail">Email</label> -->
+                        <!-- <label for="userEmail">Email</label> -->
                         <input 
                             type            ="email" 
                             class           ="" 
-                            name            ="contEmail" 
+                            name            ="userEmail" 
                             id              ="" 
                             placeholder     ="Email"
                         /></br>
                     </div>
                     <div class="">
-                        <!-- <label for="contTitle">Job Title</label> -->
+                        <!-- <label for="userTitle">Job Title</label> -->
                         <input 
                             type            ="text" 
                             class           ="" 
-                            name            ="contTitle" 
+                            name            ="userTitle" 
                             id              ="" 
                             placeholder     ="Job Title"
-                        /></br>
-                    </div>
-                    <div class="">
-                        <!-- <label for="contCo">Company</label> -->
-                        <input 
-                            type            ="text" 
-                            class           ="" 
-                            name            ="contCo" 
-                            id              ="" 
-                            placeholder     ="Company"
-                        /></br>
-                    </div>
-                    <div class="">
-                        <!-- <label for="contDept">Department</label> -->
-                        <input 
-                            type            ="text" 
-                            class           ="" 
-                            name            ="contDept" 
-                            id              ="" 
-                            placeholder     ="Department"
                         /></br>
                     </div>
                     <div class="">
@@ -90,7 +70,7 @@ A user can access this from the nav bar (when not logged in)
                         <input 
                             type            ="text" 
                             class           ="" 
-                            name            ="uName" 
+                            name            ="username" 
                             id              ="" 
                             placeholder     ="Username"
                         /></br>
@@ -106,12 +86,12 @@ A user can access this from the nav bar (when not logged in)
                         /></br>
                     </div>
 
-                    <button class="btn waves-effect right" type="submit">Submit</button>
+                    <button class="btn right" type="submit">Submit</button>
 
                 </div>
 
             </form>
         </div>
 
-    </div><!-- closes container -->
+    </div><!-- closes userainer -->
 </main>

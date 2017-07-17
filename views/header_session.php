@@ -14,13 +14,13 @@
             <div class="col s12 m4">
                 <ul class="right">
                     <li class="col s12">
-                        <a href='?action=logout'>Sign Out</a>
+                        <a href='?action=signout'>Sign Out</a>
                     </li>
                     <li class="col s12">
                         <a href='?action=directory'>Directory</a>
                     </li>
                     <li class="col s12">
-                        <a href='?action=viewProfileUser'>Welcome <?=$user["contFName"];?>!</a>
+                        <a href='?action=viewProfileUser'>Welcome <?=$user["userFName"];?>!</a>
                     </li>
                 </ul>
             </div>
