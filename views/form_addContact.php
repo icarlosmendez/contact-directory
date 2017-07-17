@@ -87,7 +87,7 @@ A user can access this from the nav bar (when not logged in)
                     </div>
                     </div>
 
-                    <button class="btn waves-effect right" type="submit">Submit</button>
+                    <button class="btn right" type="submit">Submit</button>
 
                 </div>
 

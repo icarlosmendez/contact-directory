@@ -166,7 +166,7 @@ if(!empty($_GET['action'])){
     }
 
     // *********** DELETE CONTACT *********************
-    else if ($_GET["action"]=="delete"){
+    else if ($_GET["action"]=="deleteContact"){
         // run the function deleteContact, pass in the contactId
         // terminate session
         // redirect to the splash page
@@ -174,18 +174,18 @@ if(!empty($_GET['action'])){
         header("location:?splash");
     }
 
-    // *********** NEW CONTACT FORM *********************
+    // *********** ADD CONTACT FORM VIEW *********************
     // If the user decides to signup (from links on splash bar or nav)
     // they will be redirected to the Signup Form.
     if($_GET["action"]=="addContact"){
-        $data = $contacts->getUser($_SESSION["userId"]);
+        $data = $users->getUser($_SESSION["userId"]);
         $views->getViews("views/head.php");
         $views->getViews("views/header_session.php", $data);
         $views->getViews("views/form_addContact.php");
         $views->getViews("views/footer.php");
     }
 
-    // *********** SIGN UP A NEW CONTACT *********************
+    // *********** ADD CONTACT ACTION *********************
     // When the user hits "submit" from the Signup Form,
     // the addContact function is run.
     // pass in contFName, contLName, contPhone, contEmail, username, password
@@ -202,7 +202,20 @@ if(!empty($_GET['action'])){
                     $_POST["contCo"],
                     $_POST["contDept"]
                 );
-        header("location:?action=successSignUp");
+        header("location:?action=successAddContact");
+    }
+
+    // *********** ADD CONTACT SUCCESS *********************
+    // The user will be redirected to a success page after they add a new contact
+    // The success page will confirm the new contacts details
+    // getUser will run to pull the information from the database and store as $data
+    // the information will then be passed into successSignUp.php
+    else if ($_GET["action"]=="successAddContact"){
+        $data = $users->getUser($_SESSION["userId"]);
+        $views->getViews("views/head.php");
+        $views->getViews("views/header_session.php",$data);
+        $views->getViews("views/successAddContact.php",$data);
+        $views->getViews("views/footer.php");
     }
 
     // *********** SIGNOUT *************

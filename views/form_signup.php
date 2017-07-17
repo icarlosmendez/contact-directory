@@ -41,7 +41,7 @@ A user can access this from the nav bar (when not logged in)
                             type            ="tel" 
                             class           ="" 
                             name            ="userPhone" 
-                            id              ="" 
+                            id              ="phone" 
                             placeholder     ="Phone Number"
                         /></br>
                     </div>
@@ -51,7 +51,7 @@ A user can access this from the nav bar (when not logged in)
                             type            ="email" 
                             class           ="" 
                             name            ="userEmail" 
-                            id              ="" 
+                            id              ="email" 
                             placeholder     ="Email"
                         /></br>
                     </div>
@@ -61,7 +61,7 @@ A user can access this from the nav bar (when not logged in)
                             type            ="text" 
                             class           ="" 
                             name            ="userTitle" 
-                            id              ="" 
+                            id              ="title" 
                             placeholder     ="Job Title"
                         /></br>
                     </div>
@@ -71,7 +71,7 @@ A user can access this from the nav bar (when not logged in)
                             type            ="text" 
                             class           ="" 
                             name            ="username" 
-                            id              ="" 
+                            id              ="username" 
                             placeholder     ="Username"
                         /></br>
                     </div>
@@ -81,7 +81,7 @@ A user can access this from the nav bar (when not logged in)
                             type            ="password" 
                             class           ="" 
                             name            ="password" 
-                            id              ="" 
+                            id              ="password" 
                             placeholder     ="Password"
                         /></br>
                     </div>

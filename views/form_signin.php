@@ -14,7 +14,7 @@ A user can access this from the nav bar (when not logged in)
 
                 <div class="">
                     <!-- <label for="username">Username</label> -->
-                    <input type="text" class="" name="uName" id="username" placeholder="Username" autofocus>
+                    <input type="text" class="" name="username" id="username" placeholder="Username" autofocus>
                 </div>
 
                 <div class="">
@@ -22,7 +22,7 @@ A user can access this from the nav bar (when not logged in)
                     <input type="password" class="" name="password" id="password" placeholder="Password">
                 </div>
 
-                <button class="btn waves-effect right" type="submit">Submit</button>
+                <button class="btn right" type="submit">Submit</button>
 
             </form>
         </div>

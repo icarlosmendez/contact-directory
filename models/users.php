@@ -43,10 +43,12 @@ class Users{
         $sth->execute();
         $result = $sth->fetchAll();
 
+        var_dump($result[0]["userId"]);
+
         // If the result of the 1st array item contains a 'userId', let the user know they have successfully logged in
         if (isset($result[0]["userId"])) {
             $_SESSION["userId"] = $result[0]["userId"];
-            // var_dump($_SESSION["userId"]);
+            var_dump($_SESSION["userId"]);
             return TRUE;
         
         } else {
@@ -112,7 +114,7 @@ class Users{
     // pass in userFName, userLName, userPhone, userEmail, userTitle, userCo, userDept, username and password
     // salt & hash password
     // nothing is returned; database is updated with new useract
-    public function addUser($userFName, $userLName, $userPhone, $userEmail, $userTitle, $uname, $password){
+    public function addUser($userFName, $userLName, $userPhone, $userEmail, $userTitle, $username, $password){
 
         // call global variables for use in this method
         global $host, $name, $port, $char, $uname, $pword, $psalt;
@@ -129,7 +131,7 @@ class Users{
 
         // insert the values into the database
         $st = $dbh->prepare("INSERT INTO users (userFName, userLName, userPhone, userEmail, userTitle, username, password) VALUES (:efn, :eln, :ep, :ee, :ti, :un, :pass)");
-        $st->execute(array(":efn"=>$userFName, ":eln"=>$userLName, ":ep"=>$userPhone, ":ee"=>$userEmail, ":ti"=>$userTitle, ":un"=>$uname, ":pass"=>$password));
+        $st->execute(array(":efn"=>$userFName, ":eln"=>$userLName, ":ep"=>$userPhone, ":ee"=>$userEmail, ":ti"=>$userTitle, ":un"=>$username, ":pass"=>$password));
 
         // Pull last value created from database & set as a session var
         // This will make it available across the application
