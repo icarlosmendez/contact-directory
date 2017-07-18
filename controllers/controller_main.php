@@ -111,8 +111,10 @@ if(!empty($_GET['action'])){
     // Contact profile is from the directory page
     // run the function getContact, pass in session var contId
     // pass $data into the view profile.php
-    else if ($_GET["action"]=="viewProfileContact"){
-        var_dump($_SESSION["contId"]);
+    // $contId=$_GET["contId"];
+    else if ($_GET["action"]=="viewProfileContact&contId"){
+        
+        print_r($contId);
         $data1 = $contacts->getUser($_SESSION["userId"]);
         $data2 = $contacts->getContact($_SESSION["contId"]);
         

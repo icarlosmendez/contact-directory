@@ -590,6 +590,10 @@ input[type=range] {
   content: "\e63c";
 }
 
+.mdi-action-list:before {
+  content: "\e640";
+}
+
 .mdi-content-add:before {
   content: "\e6fb";
 }
@@ -1273,35 +1277,6 @@ footer.page-footer .footer-copyright {
  * https://github.com/fians/Waves/blob/master/LICENSE
  */
 
-.waves-effect {
-  position: relative;
-  cursor: pointer;
-  display: inline-block;
-  overflow: hidden;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-  vertical-align: middle;
-  z-index: 1;
-  will-change: opacity, transform;
-  -webkit-transition: all 0.3s ease-out;
-  transition: all 0.3s ease-out;
-}
-
-.waves-input-wrapper {
-  border-radius: 0.2em;
-  vertical-align: bottom;
-}
-
-.waves-input-wrapper .waves-button-input {
-  position: relative;
-  top: 0;
-  left: 0;
-  z-index: 1;
-}
-
 /* Firefox Bug: link not triggered */
 
 /* Remove Focus Boxes */
@@ -1799,7 +1774,8 @@ input[type=range]:focus::-ms-fill-upper {
  * animation-delay and instead set custom keyframes for each color (as redundant as it
  * seems).
  *
- * We write out each animation in full (instead of separating animation-name, * animation-duration, etc.) because under the polyfill, Safari does not recognize those
+ * We write out each animation in full (instead of separating animation-name,
+ * animation-duration, etc.) because under the polyfill, Safari does not recognize those
  * specific properties properly, treats them as -webkit-animation, and overrides the
  * other animation rules. See https://github.com/Polymer/platform/issues/53.
  */
@@ -2632,6 +2608,10 @@ nav ul li a {
 
 .upper-spacer {
   margin: 4rem 0 0;
+}
+
+.hidden {
+  display: none;
 }
 
 /* ***************************************************** */

@@ -46,12 +46,15 @@ $data is passed in: $data = $contacts->getContacts();
 			<tbody>
 			<?php
 				foreach($results as $contact) {	
+					$contId=$contact["contId"]
 			?>
 
 					<tr>
 						<td>
-							<a href='?action=viewProfileContact/<?=$contact["contId"];?>'>
-								<?=$contact["contId"];?>
+							<!-- <span class="hidden"><?=$contId=$contact["contId"];?></span> -->
+							<a href='?action=viewProfileContact&$contId'>
+								<?=$contId;?>
+								<!-- <?=$contact["contId"];?> -->
 							</a>
 						</td>
 						<td><?=$contact["contFName"];?></td>
