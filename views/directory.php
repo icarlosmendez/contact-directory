@@ -22,7 +22,7 @@ $data is passed in: $data = $contacts->getContacts();
 			<!-- Table Head is comprised of the Column names and sorting icons/buttons -->
 			<thead>
 				<tr>
-					<th class="headervis">Contact Id </th>
+					<!-- <th class="headervis">Contact Id </th> -->
 					<th class="headervis">First Name
 						<!-- <a href="?action=sortfnameasc"><img class="asc" src="../public/images/arrow_icon_asc.svg"></a>
 						<a href="?action=sortfnamedesc"><img class="dsc" src="../public/images/arrow_icon_dsc.svg"></a> -->
@@ -41,39 +41,42 @@ $data is passed in: $data = $contacts->getContacts();
 					</th>
 				</tr>
 			</thead>
+			</table>
 
-			<!-- Table body is comprised of the user data output by a foreach loop -->
-			<tbody>
-			<?php
-				foreach($results as $contact) {	
-					$contId=$contact["contId"]
-			?>
+			<div class="scrollable">
+				<!-- Table body is comprised of the user data output by a foreach loop -->
+				<table class="table">
+				<tbody>
+				<?php
+					foreach($results as $contact) {	
+						// $contId=$contact["contId"]
+				?>
 
-					<tr>
-						<td>
-							<!-- <span class="hidden"><?=$contId=$contact["contId"];?></span> -->
-							<a href='?action=viewProfileContact&$contId'>
-								<?=$contId;?>
-								<!-- <?=$contact["contId"];?> -->
-							</a>
-						</td>
-						<td><?=$contact["contFName"];?></td>
-						<td><?=$contact["contLName"];?></td>
-						<td><?=$contact["contPhone"];?></td>
-						<td><?=$contact["contEmail"];?></td>
-						<td>
-							<a href='?action=deleteContact'>
-								<img class="trash right" role="button" src="public/images/trash_delete.svg" alt="Delete" title="Delete" />
-							</a>
-						</td>
-					</tr>
+						<tr>
+							<!-- <td>
+								<a href='?action=viewProfileContact&$contId'>
+									<?=$contId;?>
+								</a>
+							</td> -->
+							<td class="headervis"><?=$contact["contFName"];?></td>
+							<td class="headervis"><?=$contact["contLName"];?></td>
+							<td class="headervis"><?=$contact["contPhone"];?></td>
+							<td class="headervis"><?=$contact["contEmail"];?></td>
+							<!-- <td>
+								<a href='?action=deleteContact'>
+									<img class="trash right" role="button" src="public/images/trash_delete.svg" alt="Delete" title="Delete" />
+								</a>
+							</td> -->
+						</tr>
 
-			<?php
-				} // close foreach loop
-			?>
+				<?php
+					} // close foreach loop
+				?>
 
-			</tbody>
+				</tbody>
+			
 		</table>
+		</div>
 	</div>
 
 

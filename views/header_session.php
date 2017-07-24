@@ -7,7 +7,7 @@
         <div class="container">
             <div class="col s12 m6">
                 <a href="?" class="left">
-                    <img class="asc" src="../public/images/247_logo.svg" id="logo" />
+                    <img class="asc" src="../public/images/logo.svg" id="logo" />
                 </a>
             </div>
 

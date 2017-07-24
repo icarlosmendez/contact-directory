@@ -14,16 +14,14 @@ directed from:  $_GET["action"]=="directory" (#6 on controllers/Action_Controlle
     <div class="container">
 
         <div class="upper-spacer">
-            <h2>Contact Profile</h2>
+            <h2>User Profile</h2>
             <div class="card-panel">
-                <p><span class="">First Name:</span>     <?=$user["contFName"];?></p>
-                <p>Last Name:      <?=$user["contLName"];?></p>
-                <p>Phone Number:   <?=$user["contPhone"];?></p>
-                <p>Email:          <?=$user["contEmail"];?></p>
-                <p>Title:          <?=$user["contTitle"];?></p>
-                <p>Co:             <?=$user["contCo"];?></p>
-                <p>Dept:           <?=$user["contDept"];?></p></br>
-                <p>Username:       <?=$user["username"];?></p></br>
+                <p>First Name:      <?=$user["userFName"];?></p>
+                <p>Last Name:       <?=$user["userLName"];?></p>
+                <p>Phone Number:    <?=$user["userPhone"];?></p>
+                <p>Email:           <?=$user["userEmail"];?></p>
+                <p>Title:           <?=$user["userTitle"];?></p>
+                <p>Username:        <?=$user["username"];?></p>
 
                 <a class='' href='?action=updateUser'>Update</a>&nbsp&nbsp
                 <a class='' href='?action=delete'>Delete Account</a>

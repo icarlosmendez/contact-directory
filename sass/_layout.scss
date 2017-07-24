@@ -21,7 +21,11 @@
 .hidden {
     display: none;
 }
-
+.scrollable {
+    background-color: lightblue;
+    height: 400px;
+    overflow-y: auto;
+}
 
 /* ***************************************************** */
     /* Media Queries */

@@ -38,6 +38,12 @@ class Contacts{
         $st = $dbh->prepare("INSERT INTO contacts (contFName, contLName, contPhone, contEmail, contTitle, contCo, contDept) VALUES (:efn, :eln, :ep, :ee, :ti, :co, :de)");
         $st->execute(array(":efn"=>$contFName, ":eln"=>$contLName, ":ep"=>$contPhone, ":ee"=>$contEmail, ":ti"=>$contTitle, ":co"=>$contCo, ":de"=>$contDept));
 
+        // Pull last value inserted into database & set as a session var
+        // This will make it available across the application 
+        // but primarily for output on the successAddContact page
+        $st = $dbh->prepare("SELECT max(contId) FROM contacts;");
+        $st->execute();
+        $_SESSION["contId"] = $st->fetchColumn();
     }
 
     // **************** UPDATE CONTACT *********************
@@ -98,7 +104,7 @@ class Contacts{
 
         // grab all users with matching userid's (should only be one!)
         // return result
-        $st = $dbh->prepare("SELECT contFName, contLName, contPhone, contEmail, contTitle, contCo, contDept, username FROM contacts WHERE contId = :id");
+        $st = $dbh->prepare("SELECT contFName, contLName, contPhone, contEmail, contTitle FROM contacts WHERE contId = :id");
         $st->execute(array(":id"=>$eid));
         $result = $st->fetchAll();
         var_dump($result);

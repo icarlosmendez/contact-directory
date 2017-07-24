@@ -6,6 +6,7 @@
 // $data is passed in: $data = $contacts->getContact($_SESSION["contId"]);
 -->
 <?php
+    // var_dump($results);
     foreach($results as $contact){
 ?>
 
@@ -19,7 +20,7 @@
             <p>Last Name:       <?=$contact["contLName"];?></p>
             <p>Phone Number:    <?=$contact["contPhone"];?></p>
             <p>Email:           <?=$contact["contEmail"];?></p>
-            <p>Username:        <?=$contact["username"];?></p>
+            <p>Title:           <?=$contact["contTitle"];?></p>
     
             <a class='' role='button' href='?action=directory'>Directory</a>
         </div>

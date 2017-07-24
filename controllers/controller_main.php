@@ -100,7 +100,7 @@ if(!empty($_GET['action'])){
     // run the function getUser, pass in session var contId
     // pass $data into the view profile.php
     else if ($_GET["action"]=="viewProfileUser"){
-        $data = $contacts->getUser($_SESSION["userId"]);
+        $data = $users->getUser($_SESSION["userId"]);
         $views->getViews("views/head.php");
         $views->getViews("views/header_session.php", $data);
         $views->getViews("views/profile_user.php", $data);
@@ -142,10 +142,10 @@ if(!empty($_GET['action'])){
     else if ($_GET["action"]=="updateUser"){
         // run function getUser by using the userid, pass results into $data
         // pass $data into the view update_form.php
-        $data = $contacts->getContact($_SESSION["userId"]);
+        $data = $users->getUser($_SESSION["userId"]);
         $views->getViews("views/head.php");
         $views->getViews("views/header_session.php",$data);
-        $views->getViews("views/form_update.php",$data);
+        $views->getViews("views/form_update_user.php",$data);
         $views->getViews("views/footer.php");
     }
 
@@ -215,10 +215,11 @@ if(!empty($_GET['action'])){
     // getUser will run to pull the information from the database and store as $data
     // the information will then be passed into successSignUp.php
     else if ($_GET["action"]=="successAddContact"){
-        $data = $users->getUser($_SESSION["userId"]);
+        $data1 = $users->getUser($_SESSION["userId"]);
+        $data2 = $contacts->getContact($_SESSION["contId"]);
         $views->getViews("views/head.php");
-        $views->getViews("views/header_session.php",$data);
-        $views->getViews("views/successAddContact.php",$data);
+        $views->getViews("views/header_session.php",$data1);
+        $views->getViews("views/successAddContact.php",$data2);
         $views->getViews("views/footer.php");
     }
 

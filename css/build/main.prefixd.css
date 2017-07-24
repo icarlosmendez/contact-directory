@@ -2614,6 +2614,12 @@ nav ul li a {
   display: none;
 }
 
+.scrollable {
+  background-color: lightblue;
+  height: 400px;
+  overflow-y: auto;
+}
+
 /* ***************************************************** */
 
 /* Media Queries */
