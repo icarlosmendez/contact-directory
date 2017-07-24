@@ -40,9 +40,19 @@ A user can access this from the nav bar (when not logged in)
                         <input 
                             type            ="tel" 
                             class           ="" 
-                            name            ="contPhone" 
+                            name            ="contCell" 
                             id              ="" 
-                            placeholder     ="Phone Number"
+                            placeholder     ="Cell Number"
+                        /></br>
+                    </div>
+                    <div class="">
+                        <!-- <label for="contPhone">Phone</label> -->
+                        <input 
+                            type            ="tel" 
+                            class           ="" 
+                            name            ="contLand" 
+                            id              ="" 
+                            placeholder     ="Land line"
                         /></br>
                     </div>
                     <div class="">

@@ -29,7 +29,7 @@ if(!empty($_GET['action'])){
     // *********** SIGN UP A NEW USER *********************
     // When the user hits "submit" from the Signup Form,
     // the addContact function is run.
-    // pass in contFName, contLName, contPhone, contEmail, username, password
+    // pass in contFName, contLName, contCell, contLand, contEmail, username, password
     // addContact will salt & hash password and add user to database
     // addContact returns all info associated with account, stored into $data
     // The user will be redirected to the Success Sign Up page with $data
@@ -158,7 +158,8 @@ if(!empty($_GET['action'])){
                     $_SESSION["userId"], 
                     $_POST["contFName"], 
                     $_POST["contLName"],
-                    $_POST["contPhone"],
+                    $_POST["contCell"],
+                    $_POST["contLand"],
                     $_POST["contEmail"],
                     $_POST["contTitle"],
                     $_POST["contCo"],
@@ -192,7 +193,7 @@ if(!empty($_GET['action'])){
     // *********** ADD CONTACT ACTION *********************
     // When the user hits "submit" from the Signup Form,
     // the addContact function is run.
-    // pass in contFName, contLName, contPhone, contEmail, username, password
+    // pass in contFName, contLName, contCell, contLand, contEmail, username, password
     // addContact will salt & hash password and add user to database
     // addContact returns all info associated with account, stored into $data
     // The user will be redirected to the Success Sign Up page with $data
@@ -200,7 +201,8 @@ if(!empty($_GET['action'])){
         $contacts->addContact(
                     $_POST["contFName"],
                     $_POST["contLName"],
-                    $_POST["contPhone"],
+                    $_POST["contCell"],
+                    $_POST["contLand"],
                     $_POST["contEmail"],
                     $_POST["contTitle"],
                     $_POST["contCo"],

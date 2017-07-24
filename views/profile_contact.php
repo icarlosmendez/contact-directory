@@ -17,7 +17,8 @@ directed from:  $_GET["action"]=="viewProfileContact" (#6 on controllers/Action_
             <div class="card-panel">
                 <p><span class="">First Name:</span>     <?=$contact["contFName"];?></p>
                 <p>Last Name:      <?=$contact["contLName"];?></p>
-                <p>Phone Number:   <?=$contact["contPhone"];?></p>
+                <p>Cell Number:    <?=$contact["contCell"];?></p>
+                <p>Landline:       <?=$contact["contLand"];?></p>
                 <p>Email:          <?=$contact["contEmail"];?></p>
                 <p>Title:          <?=$contact["contTitle"];?></p>
                 <p>Co:             <?=$contact["contCo"];?></p>

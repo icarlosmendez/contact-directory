@@ -18,7 +18,8 @@
     
             <p>First Name:      <?=$contact["contFName"];?></p>
             <p>Last Name:       <?=$contact["contLName"];?></p>
-            <p>Phone Number:    <?=$contact["contPhone"];?></p>
+            <p>Cell Number:     <?=$contact["contCell"];?></p>
+            <p>Landline:        <?=$contact["contLand"];?></p>
             <p>Email:           <?=$contact["contEmail"];?></p>
             <p>Title:           <?=$contact["contTitle"];?></p>
             <p>Company:         <?=$contact["contCo"];?></p>

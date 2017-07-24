@@ -13,56 +13,62 @@
             <h3>Update Profile Information</h3>
         
             <?php
-                foreach($results as $user){
+                foreach($results as $contact){
             ?>
         
                 <form class="wideform" action="?action=editAction" method="POST" >
                     <input 
                         type            ="text" 
                         name            ="contFName" 
-                        value           ="<?=$user["contFName"];?>"
+                        value           ="<?=$contact["contFName"];?>"
                         placeholder     ="First Name"
                     /></br>
                     <input 
                         type            ="text" 
                         name            ="contLName" 
-                        value           ="<?=$user["contLName"];?>"
+                        value           ="<?=$contact["contLName"];?>"
                         placeholder     ="Last Name"
                     /></br>
                     <input 
                         type            ="text" 
-                        name            ="contPhone" 
-                        value           ="<?=$user["contPhone"];?>"
+                        name            ="contCell" 
+                        value           ="<?=$contact["contCell"];?>"
+                        placeholder     ="Phone"
+                    /></br>
+                    <input 
+                        type            ="text" 
+                        name            ="contLand" 
+                        value           ="<?=$contact["contLand"];?>"
                         placeholder     ="Phone"
                     /></br>
                     <input 
                         type            ="email" 
                         name            ="contEmail"
-                        value           ="<?=$user["contEmail"];?>"
+                        value           ="<?=$contact["contEmail"];?>"
                         placeholder     ="Email"
                     /></br>
                     <input 
                         type            ="text" 
                         name            ="contTitle" 
-                        value           ="<?=$user["contTitle"];?>"
+                        value           ="<?=$contact["contTitle"];?>"
                         placeholder     ="Job Title"
                     /></br>
                     <input 
                         type            ="text" 
                         name            ="contCo" 
-                        value           ="<?=$user["contCo"];?>"
+                        value           ="<?=$contact["contCo"];?>"
                         placeholder     ="Company"
                     /></br>
                     <input 
                         type            ="text" 
                         name            ="contDept" 
-                        value           ="<?=$user["contDept"];?>"
+                        value           ="<?=$contact["contDept"];?>"
                         placeholder     ="Department"
                     /></br>
                     <input 
                         type            ="hidden" 
                         name            ="contId" 
-                        value           ="<?=$user["contId"];?>"
+                        value           ="<?=$contact["contId"];?>"
                     />
                     <button class="btn right" type="submit">Submit</button>
                 </form>

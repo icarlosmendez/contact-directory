@@ -1,4 +1,4 @@
-//* I am styles written by Carlos Mendez for use in th contact-directory project *//
+//* I am styles written by Carlos Mendez for use in the contact-directory project *//
 
 /* ***************************************************** */
 /* Form Styles */
@@ -20,7 +20,9 @@ input {
     &[type=date],
     &[type=datetime-local],
     &[type=number],
-    &[type=search],
+    &[type=search] {
+        margin: 0 0.83em
+    }
     &[type=submit],
     &textarea.materialize-textarea {
 
