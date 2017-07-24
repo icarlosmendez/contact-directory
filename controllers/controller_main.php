@@ -114,7 +114,7 @@ if(!empty($_GET['action'])){
     // $contId=$_GET["contId"];
     else if ($_GET["action"]=="viewProfileContact&contId"){
         
-        print_r($contId);
+        // print_r($contId);
         $data1 = $contacts->getUser($_SESSION["userId"]);
         $data2 = $contacts->getContact($_SESSION["contId"]);
         
@@ -173,7 +173,7 @@ if(!empty($_GET['action'])){
         // terminate session
         // redirect to the splash page
         $data = $contacts->getContact($_SESSION["contId"]);
-        var_dump($data);
+        // var_dump($data);
         $contacts->deleteContact($data);
         header("location:?directory");
     }

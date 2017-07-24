@@ -17,65 +17,59 @@ $data is passed in: $data = $contacts->getContacts();
 				<a class="btn right" href='?action=addContact'>Add Contact</a>
 			</div>
 		</div>
+		<div class="row">
+			<input type="search" class="light-table-filter" data-table="order-table" placeholder="Filter List">
+		</div>
 
-		<table class="table">
-			<!-- Table Head is comprised of the Column names and sorting icons/buttons -->
-			<thead>
-				<tr>
-					<!-- <th class="headervis">Contact Id </th> -->
-					<th class="headervis">First Name
-						<!-- <a href="?action=sortfnameasc"><img class="asc" src="../public/images/arrow_icon_asc.svg"></a>
-						<a href="?action=sortfnamedesc"><img class="dsc" src="../public/images/arrow_icon_dsc.svg"></a> -->
-					</th>
-					<th class="headervis">Last Name
-						<!-- <a href="?action=sortlnameasc"><img class="asc" src="../public/images/arrow_icon_asc.svg"></a>
-						<a href="?action=sortlnamedesc"><img class="dsc" src="../public/images/arrow_icon_dsc.svg"></a> -->
-					</th>
-					<th class="headervis">Phone Number
-						<!-- <a href="?action=sortphoneasc"><img class="asc" src="../public/images/arrow_icon_asc.svg"></a>
-						<a href="?action=sortphonedesc"><img class="dsc" src="../public/images/arrow_icon_dsc.svg"></a> -->
-					</th>
-					<th class="headervis">Email
-						<!-- <a href="?action=sortemailasc"><img class="asc" src="../public/images/arrow_icon_asc.svg"></a>
-						<a href="?action=sortemaildesc"><img class="dsc" src="../public/images/arrow_icon_dsc.svg"></a> -->
-					</th>
-				</tr>
-			</thead>
+
+		<div class="row">
+			<div class="col s3 headervis">Last Name</div>
+				<!-- <a href="?action=sortlnameasc"><img class="asc" src="../public/images/arrow_icon_asc.svg"></a>
+				<a href="?action=sortlnamedesc"><img class="dsc" src="../public/images/arrow_icon_dsc.svg"></a> -->
+			<div class="col s3 headervis">First Name</div>
+				<!-- <a href="?action=sortfnameasc"><img class="asc" src="../public/images/arrow_icon_asc.svg"></a>
+				<a href="?action=sortfnamedesc"><img class="dsc" src="../public/images/arrow_icon_dsc.svg"></a> -->
+			<div class="col s3 headervis">Phone Number</div>
+				<!-- <a href="?action=sortphoneasc"><img class="asc" src="../public/images/arrow_icon_asc.svg"></a>
+				<a href="?action=sortphonedesc"><img class="dsc" src="../public/images/arrow_icon_dsc.svg"></a> -->
+			<div class="col s3 headervis">Email</div>
+				<!-- <a href="?action=sortemailasc"><img class="asc" src="../public/images/arrow_icon_asc.svg"></a>
+				<a href="?action=sortemaildesc"><img class="dsc" src="../public/images/arrow_icon_dsc.svg"></a> -->
+		</div>
+
+		<div class="scrollable">
+			<!-- Table body is comprised of the user data output by a foreach loop -->
+			<table class="table order-table">
+			<tbody>
+			<?php
+				foreach($results as $contact) {	
+					// $contId=$contact["contId"]
+			?>
+
+					<tr>
+						<!-- <td>
+							<a href='?action=viewProfileContact&$contId'>
+								<?=$contId;?>
+							</a>
+						</td> -->
+						<td class="headervis"><?=$contact["contLName"];?></td>
+						<td class="headervis"><?=$contact["contFName"];?></td>
+						<td class="headervis"><?=$contact["contPhone"];?></td>
+						<td class="headervis"><?=$contact["contEmail"];?></td>
+						<!-- <td>
+							<a href='?action=deleteContact'>
+								<img class="trash right" role="button" src="public/images/trash_delete.svg" alt="Delete" title="Delete" />
+							</a>
+						</td> -->
+					</tr>
+
+			<?php
+				} // close foreach loop
+			?>
+
+			</tbody>
+		
 			</table>
-
-			<div class="scrollable">
-				<!-- Table body is comprised of the user data output by a foreach loop -->
-				<table class="table">
-				<tbody>
-				<?php
-					foreach($results as $contact) {	
-						// $contId=$contact["contId"]
-				?>
-
-						<tr>
-							<!-- <td>
-								<a href='?action=viewProfileContact&$contId'>
-									<?=$contId;?>
-								</a>
-							</td> -->
-							<td class="headervis"><?=$contact["contFName"];?></td>
-							<td class="headervis"><?=$contact["contLName"];?></td>
-							<td class="headervis"><?=$contact["contPhone"];?></td>
-							<td class="headervis"><?=$contact["contEmail"];?></td>
-							<!-- <td>
-								<a href='?action=deleteContact'>
-									<img class="trash right" role="button" src="public/images/trash_delete.svg" alt="Delete" title="Delete" />
-								</a>
-							</td> -->
-						</tr>
-
-				<?php
-					} // close foreach loop
-				?>
-
-				</tbody>
-			
-		</table>
 		</div>
 	</div>
 

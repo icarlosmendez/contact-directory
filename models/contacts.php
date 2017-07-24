@@ -104,10 +104,10 @@ class Contacts{
 
         // grab all users with matching userid's (should only be one!)
         // return result
-        $st = $dbh->prepare("SELECT contFName, contLName, contPhone, contEmail, contTitle FROM contacts WHERE contId = :id");
+        $st = $dbh->prepare("SELECT contFName, contLName, contPhone, contEmail, contTitle, contCo, contDept FROM contacts WHERE contId = :id");
         $st->execute(array(":id"=>$eid));
         $result = $st->fetchAll();
-        var_dump($result);
+        // var_dump($result);
         return $result;
     }
 

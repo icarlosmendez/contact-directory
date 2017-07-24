@@ -21,8 +21,11 @@
             <p>Phone Number:    <?=$contact["contPhone"];?></p>
             <p>Email:           <?=$contact["contEmail"];?></p>
             <p>Title:           <?=$contact["contTitle"];?></p>
+            <p>Company:         <?=$contact["contCo"];?></p>
+            <p>Department:      <?=$contact["contDept"];?></p>
+            <br />
     
-            <a class='' role='button' href='?action=directory'>Directory</a>
+            <a class='' role='button' href='?action=directory'>Go to Directory</a>
         </div>
 
     </div><!-- closes contianer -->
