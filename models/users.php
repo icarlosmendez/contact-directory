@@ -1,7 +1,9 @@
 <?php
 
-    // database access environmental variables
-    // these variables are used throughout the Users class
+    // DATABASE ACCESS ENVIRONMENTAL VARIABLES
+    // These variables are used throught the application
+    // These variable are exclusively for contacting the database 
+    // They have nothing to do with records in the database
     $psalt  = getenv('DB_PSALT'); 
     $host   = getenv('DB_HOST');
     $name   = getenv('DB_NAME');
@@ -14,7 +16,7 @@
 
 // Create "Users" Class (aka object)
 
-class Users{ 
+class Users { 
 
     // *********** LOGIN VERIFICATION *********************
     // called when ($_GET["action"]=="signinAction") -- (#?)

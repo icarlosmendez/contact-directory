@@ -3,7 +3,6 @@
 
 // Includes for Controller:
 include("models/contacts.php");
-include("models/users.php");
 include("models/views.php");
 
 // Instantiate and make new copies of your Classes above
@@ -12,9 +11,14 @@ $views = new Views();
 $users = new Users();
 $contacts = new Contacts();
 
+
+// Controller routes the users based on the form "action" from Views;
+// If the action is not empty -- keep processing...
+if(!empty($_GET['action'])){
+
     // *********** TABLE SORTING FUNCTIONS: *********************
     // *********** SORT BY FIRST NAME ASCENDING *************
-    else if ($_GET["action"]=="sortfnameasc"){
+    if ($_GET["action"]=="sortfnameasc"){
         $data1 = $contacts->getContact($_SESSION["contId"]);
         $data2 = $contacts->getContactsfnameasc();
         $views->getViews("views/head.php");
@@ -92,5 +96,6 @@ $contacts = new Contacts();
         $views->getViews("views/directory.php",$data2);
         $views->getViews("views/footer.php");
     }
+}
 
 ?>

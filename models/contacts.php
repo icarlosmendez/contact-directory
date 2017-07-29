@@ -16,7 +16,7 @@
 
 // Create "Contacts" Class (aka object)
 
-class Contacts{ 
+class Contacts { 
 
     // ***************** ADD a New Contact *********************
     // called when ($_GET["action"]=="addContactAction") -- (#?)
