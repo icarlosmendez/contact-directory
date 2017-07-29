@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 // Includes for Controller:
 include("models/contacts.php");
 include("models/users.php");
@@ -77,16 +76,28 @@ if(!empty($_GET['action'])){
     // If login is successful, they will be redirected to their profile page
     // Otherwise, they will be redirected to an error page
     else if ($_GET["action"]=="signinAction"){
-        $loggedIn = $users->verifyUser(
-                                $_POST["username"],
-                                $_POST["password"]
-                            );
+        $loggedIn = $users->verifyUser($_POST["username"], $_POST["password"]);
 
         if($loggedIn){
+            // session_start();
+            
+            // if true set the following session variables
+            $_SESSION['userid'] = $loggedIn[0]['userid'];
+            $_SESSION['loggedin'] = true;
+
+            $_SESSION['username'] = $_POST['username'];
+            $_SESSION['password'] = md5($_POST['password']);
+
+
             header("location:?action=directory");
         }
 
         else {
+            // if false set the following session variables
+            $_SESSION['userid']=0;
+            $_SESSION['loggedin'] = false;
+
+            // show the login error message
             $views->getViews("views/head.php");
             $views->getViews("views/header.php");
             $views->getViews("views/loginError.php");
@@ -112,7 +123,7 @@ if(!empty($_GET['action'])){
     // run the function getContact, pass in session var contId
     // pass $data into the view profile.php
     // $contId=$_GET["contId"];
-    else if ($_GET["action"]=="viewProfileContact&contId"){
+    else if ($_GET["action"]=="viewProfileContact"){
         
         // print_r($contId);
         $data1 = $contacts->getUser($_SESSION["userId"]);
@@ -150,7 +161,24 @@ if(!empty($_GET['action'])){
     }
 
     // *********** EDIT ACTION *********************
-    else if ($_GET["action"]=="editAction"){
+    else if ($_GET["action"]=="editUserAction"){
+        // editAction is from update_form.php
+        // run function updateContact, pass in the contactName & contactId
+        // redirect to the contactList
+        $users->updateUser(
+                    $_SESSION["userId"], 
+                    $_POST["userFName"], 
+                    $_POST["userLName"],
+                    $_POST["userPhone"],
+                    $_POST["userEmail"],
+                    $_POST["userTitle"],
+                    $_POST["username"]
+                );
+        header("location:?action=viewProfileUser");
+    }
+
+    // *********** EDIT CONTACT ACTION *********************
+    else if ($_GET["action"]=="editContactAction"){
         // editAction is from update_form.php
         // run function updateContact, pass in the contactName & contactId
         // redirect to the contactList
@@ -163,9 +191,10 @@ if(!empty($_GET['action'])){
                     $_POST["contEmail"],
                     $_POST["contTitle"],
                     $_POST["contCo"],
-                    $_POST["contDept"]
+                    $_POST["contDept"],
+                    $_POST["username"]
                 );
-        header("location:?action=viewProfileUser");
+        header("location:?action=viewProfileContact");
     }
 
     // *********** DELETE CONTACT *********************

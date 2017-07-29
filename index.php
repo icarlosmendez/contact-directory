@@ -22,7 +22,7 @@ $dotenv->required(['DB_HOST', 'DB_NAME', 'DB_PORT', 'DB_CHAR', 'DB_USER', 'DB_PA
 
 
 /*** CONTROLLER ONBOARDING ***/
-// Call on Action_Controller for routing users
+// TODO: Call on controller_main for loading all other controllers. Requires refactor.
 include ("controllers/controller_main.php");
 
 ?>

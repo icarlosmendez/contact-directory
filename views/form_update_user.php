@@ -16,7 +16,7 @@
                 foreach($results as $user){
             ?>
         
-                <form class="wideform" action="?action=editAction" method="POST" >
+                <form class="wideform" action="?action=editUserAction" method="POST" >
                     <input 
                         type            ="text" 
                         name            ="userFName" 

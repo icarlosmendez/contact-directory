@@ -22,7 +22,6 @@ class Users{
     // if username & password match, TRUE will be returned
     // else, FALSE will be returned
     public function verifyUser($usernameInput, $passwordInput){
-
         // call global variables for use in this method
         global $host, $name, $port, $char, $uname, $pword, $psalt;
         
@@ -43,12 +42,12 @@ class Users{
         $sth->execute();
         $result = $sth->fetchAll();
 
-        var_dump($result[0]["userId"]);
+        // var_dump($result[0]["userId"]);
 
         // If the result of the 1st array item contains a 'userId', let the user know they have successfully logged in
         if (isset($result[0]["userId"])) {
             $_SESSION["userId"] = $result[0]["userId"];
-            var_dump($_SESSION["userId"]);
+            // var_dump($_SESSION["userId"]);
             return TRUE;
         
         } else {
@@ -145,7 +144,7 @@ class Users{
     // pass in whatever data is populated in the form
     // database is updated with current info
     // nothing is returned
-    public function updateUser($userId, $userFName, $userLName, $userPhone, $userEmail, $userTitle, $userCo, $userDept){
+    public function updateUser($userId, $userFName, $userLName, $userPhone, $userEmail, $userTitle, $username){
         
         // call global variables for use in this method
         global $host, $name, $port, $char, $uname, $pword;
@@ -157,8 +156,8 @@ class Users{
         $dbh    = new PDO($dsn, $user, $pass);
 
         // update the values in the database
-        $st = $dbh->prepare("UPDATE users SET userFName = :ef, userLName = :el, userPhone = :ep, userEmail = :ee, userTitle = :ti, userCo = :co, userDept = :de  WHERE userId= :id");
-        $st->execute(array(":id"=>$userId, ":ef"=>$userFName, ":el"=>$userLName, ":ep"=>$userPhone, ":ee"=>$userEmail, ":ti"=>$userTitle, ":co"=>$userCo, ":de"=>$userDept));
+        $st = $dbh->prepare("UPDATE users SET userFName = :ef, userLName = :el, userPhone = :ep, userEmail = :ee, userTitle = :ti, username = :username  WHERE userId= :id");
+        $st->execute(array(":id"=>$userId, ":ef"=>$userFName, ":el"=>$userLName, ":ep"=>$userPhone, ":ee"=>$userEmail, ":ti"=>$userTitle, ":username"=>$username));
     }
 
     // *********** DELETE USER *********************
